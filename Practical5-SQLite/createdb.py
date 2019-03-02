@@ -1,26 +1,23 @@
-# -*- coding: utf-8 -*-
 """
-Created on Tue Feb 26 19:55:30 2019
-
-@author: Molly
+File which:
+Creates a connection to a database, produces a table and fills it with info.
+@author Molly Asher
+@Version 1.0
 """
 
 import os
 import sqlite3
 
-# 1. Write connection code, make database table, fill it with information.
-os.getcwd()
+# Set working directory
 os.chdir("E:/Msc/Advanced-Programming/Practical5-SQLite")
 
-# Connect to database - resultsdb
-# Create a connection object that represents the database, c
+# Create a database - resultsdb -  and create a connection to it. 
 conn = sqlite3.connect('resultsdb.sqlite')
 
 # Get a cursor from the connection to interact with the database.
 c = conn.cursor()
 
-# Create a table - the data saved is persistent and available in subsequent sessions.
-# (Call cursor's execute method to perform SQl commands)
+# Create a table (by calling cursor's execute method to perform SQL)
 c.execute("CREATE TABLE Results (address text, burglaries integer)")
 # Insert data into the table
 c.execute("INSERT INTO Results VALUES ('Queen Vic',2), ('Laundrette', 3)")

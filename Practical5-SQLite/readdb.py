@@ -1,32 +1,34 @@
-# -*- coding: utf-8 -*-
 """
-Created on Tue Feb 26 21:37:50 2019
+File which:
+Open a connection to a database and trials means of extracting information from it.
 
-@author: Molly
+@author Molly Asher
+@Version 1.0
 """
 
 import os
 import sqlite3
 
-# 1. Write connection code, make database table, fill it with information.
-os.getcwd()
-os.chdir("E:/Msc/Advanced-Programming/Practical5-SQLite")
+# Set working directory
+os.chdir("E:/Msc/Advanced-Programming/Github/GEOG_5790/Practical5-SQLite")
 
-# Connect to database - resultsdb
+# Connect to pre-existing database
 conn = sqlite3.connect('resultsdb.sqlite')
 
 # Get a cursor from the connection to interact with the database.
 c = conn.cursor()
 
-# Execute the following Python to read the table rows and print the first value in each row:
+# Read the table rows, and print (various options)
 for row in c.execute('SELECT * FROM Results ORDER BY burglaries'):
-    # Print using old style string formatting, see https://realpython.com/python-string-formatting/
+    # Print the first value in each row:
+    print(row[0])
+    # Print everything in the row.
+    print(row) 
+    # Print everything in the row formatted (with option to change order)
     print(u'{0}, {1}'.format(row[0], row[1]))
-    print(u'{1}, {0}'.format(row[0], row[1]))
-    print(u'{0}, {1}'.format(row[1], row[0]))
-    #print('{1} burglaries have happened at {0}')
-    print(row[0])     
-    print(row)  
+    # Print with added text.
+    print(u'{1} burglaries have happened at the {0}'.format(row[0], row[1]))
+
     
 # Find column names 
 c = conn.execute('SELECT * FROM Results')
