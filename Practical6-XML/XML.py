@@ -1,8 +1,8 @@
 """
 File which:
-    Opens an XML file, and validates it using two alternative methods (DTD and XSD).
-    Inspects its contents, adds new data to the XML file and saves it.
-    Transforms the XML file into an HTML file and saves it.
+Opens an XML file, and validates it using two alternative methods (DTD and XSD).
+Inspects its contents, adds new data to the XML file and saves it.
+Transforms the XML file into an HTML file and saves it.
 
 @author Molly Asher
 @Version 1.0
