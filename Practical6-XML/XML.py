@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
 """
-File which....
-@author Molly Asher
-@Version 1.0-SNAPSHOT
-@license
-"""
+File which:
+    Opens an XML file, and validates it using two alternative methods (DTD and XSD).
+    Inspects its contents, adds new data to the XML file and saves it.
+    Transforms the XML file into an HTML file and saves it.
 
-# Test change2
+@author Molly Asher
+@Version 1.0
+"""
 
 # pip install lxml
 from lxml import etree 
