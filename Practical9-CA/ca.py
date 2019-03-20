@@ -16,11 +16,15 @@ def print_environment():
 
 # Create a 2D environment containing the fuel amount in each point.
 environment = []
+results = []
 for h in range(height):
     row = []
+    results_row = []
     for w in range (width):
         row.append (fuel_amount)
+        results_row.append (fuel_amount)
     environment.append(row)
+    results.append(results_row)
 
 # Check the environment
 print_environment()    
@@ -54,7 +58,8 @@ for step in range(num_iterations):
             if (environment [h][w+1]) < fuel_amount: status = "OnFire"  
             # If status in any of these cells is OnFire, then set cell on fire
             if (status == 'OnFire') & (environment[h][w] > 0):
-                environment[h][w] -= 1
+                results[h][w] -= 1
+    environment= results
     print_environment()
             
 # Loop through number_of_iterations
