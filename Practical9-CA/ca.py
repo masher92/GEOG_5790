@@ -30,13 +30,14 @@ environment[fire_start_y][fire_start_x] -= 1
 print_environment() 
 
 ''' Define the model
-# Any cell next to a cell on fire, becomes on fire in the next iteration
+# Any cell next to a cell on fire, becomes on fire in the next iteration.
+Boundary - ignoring the edge (e.g. specifying height -1 and width -1)
 '''
 
 # Define number of iterations to run the loop for
-num_iterations = 10
+num_iterations = 3
 # For each of these iterations
-for step in range(number_of_iterations):
+for step in range(num_iterations):
     for h in range(1, height - 1):
         for w in range(1, width - 1):
             # For each position in the environment, check if that cell or any of 
