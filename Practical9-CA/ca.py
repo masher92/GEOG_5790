@@ -1,13 +1,14 @@
 """
-File which models the spread of a forest fire using a cellular automata model.
+Cellular Automata model of the spread of a forest fire.
 
 An environment is established, with an amount of fuel present at each location.  
-A fire is started at one location.
+A fire is started at one location by decreasing the amount of fuel there.
 Any cell next to a cell on fire will also catch fire.
-
 The amount of fuel at a location determines whether it is, is not or has been on fire.
+With each time step, the fuel at a location on fire decreases by 1.
+The model ends once the whole area is burnt out (e.g. the amount of fuel is 0)
 
-Boundary - ignoring the edge (e.g. specifying height -1 and width -1)
+For the purposes of the model, the boundary cells are ignored. (e.g. specifying height -1 and width -1)
 @author Molly Asher
 @Version 1.0
 """
