@@ -1,3 +1,17 @@
+"""
+File which models the spread of a forest fire using a cellular automata model.
+
+An environment is established, with an amount of fuel present at each location.  
+A fire is started at one location.
+Any cell next to a cell on fire will also catch fire.
+
+The amount of fuel at a location determines whether it is, is not or has been on fire.
+
+Boundary - ignoring the edge (e.g. specifying height -1 and width -1)
+@author Molly Asher
+@Version 1.0
+"""
+
 # Define variables
 number_of_iterations = 10
 width = 10
@@ -33,14 +47,8 @@ print_environment()
 environment[fire_start_y][fire_start_x] -= 1
 print_environment() 
 
-''' Define the model
-# Any cell next to a cell on fire, becomes on fire in the next iteration.
-Boundary - ignoring the edge (e.g. specifying height -1 and width -1)
-'''
-
-# Define number of iterations to run the loop for
-num_iterations = 3
-# For each of these iterations
+# Model the spread of fire through the environment over X number iterations
+num_iterations = 30
 for step in range(num_iterations):
     for h in range(1, height - 1):
         for w in range(1, width - 1):
@@ -61,9 +69,12 @@ for step in range(num_iterations):
                 results[h][w] -= 1
     environment= results
     print_environment()
-            
-# Loop through number_of_iterations
-# Loop through height with variable h
-# Loop through width with variable w
-# Check values around environment[h][w] for fire
-# If fire found, and value in [h][w] > 1, reduce value by 1.
+# Stopping condition: exit the iterative process once all the cells within the edge boundary are 0
+    total = 0
+    for h in range(1, height - 1): 
+        for w in range(1, width - 1): 
+            total = total + environment[h][w]
+    if (total == 0):
+        print("ends at iteration ", step)
+        break
+                
