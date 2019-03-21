@@ -1,0 +1,78 @@
+# automatic
+# qt
+
+import matplotlib
+
+# Define variables
+number_of_iterations = 10
+width = 10
+height = 10
+fire_start_x = 4
+fire_start_y = 4
+fuel_amount = 5
+
+# Define function to check environment has been produced correctly
+def print_environment():
+    for h in range(height):
+        for w in range(width):
+            print(environment[h][w], end=" ")
+        print("")
+    print("")
+
+# Create a 2D environment containing the fuel amount in each point.
+environment = []
+results = []
+for h in range(height):
+    row = []
+    results_row = []
+    for w in range (width):
+        row.append (fuel_amount)
+        results_row.append (fuel_amount)
+    environment.append(row)
+    results.append(results_row)
+
+# Check the environment
+#print_environment()    
+
+# Start a fire by reducing the fuel amount at one cell by 1.
+environment[fire_start_y][fire_start_x] -= 1
+print_environment() 
+
+def update(num_iterations):
+    for step in range(num_iterations):
+        for h in range(1, height - 1):
+            for w in range(1, width - 1):
+                global environment
+                # For each position in the environment, check if that cell or any of 
+                # the neighbouring cells are on fire  
+                status = "NotOnFire"
+                if (environment [h][w]) < fuel_amount: status = "OnFire"
+                if (environment [h-1][w-1]) < fuel_amount: status = "OnFire"
+                if (environment [h-1][w]) < fuel_amount: status = "OnFire"   
+                if (environment [h-1][w+1]) < fuel_amount: status = "OnFire"   
+                if (environment [h+1][w-1]) < fuel_amount: status = "OnFire"
+                if (environment [h+1][w]) < fuel_amount: status = "OnFire"   
+                if (environment [h+1][w+1]) < fuel_amount: status = "OnFire"   
+                if (environment [h][w-1]) < fuel_amount: status = "OnFire"
+                if (environment [h][w+1]) < fuel_amount: status = "OnFire"  
+                # If status in any of these cells is OnFire, then set cell on fire
+                if (status == 'OnFire') & (environment[h][w] > 0):
+                    results[h][w] -= 1
+        environment= results
+        print_environment()
+        matplotlib.pyplot.imshow(environment)
+        matplotlib.pyplot.show()
+        
+    # Stopping condition: exit the iterative process once all the cells within the edge boundary are 0
+        total = 0
+        for h in range(1, height - 1): 
+            for w in range(1, width - 1): 
+                total = total + environment[h][w]
+        if (total == 0):
+            print("ends at iteration ", step)
+            break
+   
+update(10)    
+
+
+
