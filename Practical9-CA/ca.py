@@ -1,17 +1,17 @@
 """
 Cellular Automata model of the spread of a forest fire.
-
 An environment is established, with an amount of fuel present at each location.  
 A fire is started at one location by decreasing the amount of fuel there.
 Any cell next to a cell on fire will also catch fire.
 The amount of fuel at a location determines whether it is, is not or has been on fire.
 With each time step, the fuel at a location on fire decreases by 1.
 The model ends once the whole area is burnt out (e.g. the amount of fuel is 0)
-
 For the purposes of the model, the boundary cells are ignored. (e.g. specifying height -1 and width -1)
 @author Molly Asher
 @Version 1.0
 """
+
+import matplotlib
 
 # Define variables
 number_of_iterations = 10
@@ -42,7 +42,7 @@ for h in range(height):
     results.append(results_row)
 
 # Check the environment
-print_environment()    
+#print_environment()    
 
 # Start a fire by reducing the fuel amount at one cell by 1.
 environment[fire_start_y][fire_start_x] -= 1
@@ -69,7 +69,10 @@ for step in range(num_iterations):
             if (status == 'OnFire') & (environment[h][w] > 0):
                 results[h][w] -= 1
     environment= results
-    print_environment()
+    #print_environment()
+    matplotlib.pyplot.imshow(environment)
+    matplotlib.pyplot.show()
+    
 # Stopping condition: exit the iterative process once all the cells within the edge boundary are 0
     total = 0
     for h in range(1, height - 1): 
@@ -78,4 +81,3 @@ for step in range(num_iterations):
     if (total == 0):
         print("ends at iteration ", step)
         break
-                
