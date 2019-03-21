@@ -69,9 +69,9 @@ for step in range(num_iterations):
             if (status == 'OnFire') & (environment[h][w] > 0):
                 results[h][w] -= 1
     environment= results
-    #print_environment()
-    matplotlib.pyplot.imshow(environment)
-    matplotlib.pyplot.show()
+    print_environment()
+    #matplotlib.pyplot.imshow(environment)
+    #matplotlib.pyplot.show()
     
 # Stopping condition: exit the iterative process once all the cells within the edge boundary are 0
     total = 0
@@ -81,3 +81,92 @@ for step in range(num_iterations):
     if (total == 0):
         print("ends at iteration ", step)
         break
+   
+def update(num_iterations):
+    for step in range(num_iterations):
+        for h in range(1, height - 1):
+            for w in range(1, width - 1):
+                global environment
+                # For each position in the environment, check if that cell or any of 
+                # the neighbouring cells are on fire  
+                status = "NotOnFire"
+                if (environment [h][w]) < fuel_amount: status = "OnFire"
+                if (environment [h-1][w-1]) < fuel_amount: status = "OnFire"
+                if (environment [h-1][w]) < fuel_amount: status = "OnFire"   
+                if (environment [h-1][w+1]) < fuel_amount: status = "OnFire"   
+                if (environment [h+1][w-1]) < fuel_amount: status = "OnFire"
+                if (environment [h+1][w]) < fuel_amount: status = "OnFire"   
+                if (environment [h+1][w+1]) < fuel_amount: status = "OnFire"   
+                if (environment [h][w-1]) < fuel_amount: status = "OnFire"
+                if (environment [h][w+1]) < fuel_amount: status = "OnFire"  
+                # If status in any of these cells is OnFire, then set cell on fire
+                if (status == 'OnFire') & (environment[h][w] > 0):
+                    results[h][w] -= 1
+        environment= results
+        print_environment()
+        #matplotlib.pyplot.imshow(environment)
+        #matplotlib.pyplot.show()
+        
+    # Stopping condition: exit the iterative process once all the cells within the edge boundary are 0
+        total = 0
+        for h in range(1, height - 1): 
+            for w in range(1, width - 1): 
+                total = total + environment[h][w]
+        if (total == 0):
+            print("ends at iteration ", step)
+            break
+
+update(10)    
+
+
+"""
+Step 2: Initialise GUI main window.
+"""
+# Import packages
+import os
+import agentframework9 as af
+import random
+#import operator
+from sys import argv
+import csv
+import matplotlib
+matplotlib.use('TkAgg') # Needs to be before any other matplotlb imports
+#matplotlib.use('TkInter')
+import matplotlib.pyplot as pyplot
+import matplotlib.animation as anim
+import tkinter
+import requests
+import bs4
+
+print("Step 2: Initialise GUI main window")
+root = tkinter.Tk() # Main window.
+root.wm_title("Model")
+
+print("Step 6: Initialising GUI.")
+# Set up the figure and loop variables.
+fig = pyplot.figure(figsize=(7, 7))
+ax = fig.add_axes([0, 0, 1, 1])
+carry_on = True
+init = True
+halted = False
+rerunid = 0
+total_ite = 0;
+print("A GUI window should appear. Please select \"Run Model\" from the \"Model\" menu to run the model.")
+
+
+#animation = anim.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
+
+def run():
+    global animation
+    animation = anim.FuncAnimation(fig, update, frames=gen_function, repeat=False)
+    #canvas.show()
+    canvas.draw()
+
+canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
+canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+
+menu_bar = tkinter.Menu(root)
+root.config(menu=menu_bar)
+model_menu = tkinter.Menu(menu_bar)
+menu_bar.add_cascade(label="Model", menu=model_menu)
+model_menu.add_command(label="Run model", command=run)

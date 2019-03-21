@@ -19,3 +19,7 @@ It returns as outputs:
 These tools include:
 	An ArcMap toolbox which contains a model built with Arcmap's ModelBuilder functionality, and the same model in the format of a python script.
 	A copy of the python script found in the toolbox.
+
+
+Script which:
+Runs the model from the toolbox

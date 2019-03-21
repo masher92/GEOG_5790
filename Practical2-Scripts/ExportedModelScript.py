@@ -27,6 +27,11 @@ results = w + "/data/generated/result_test.shp"
 if arcpy.Exists(results):
     arcpy.Delete_management(results)
 
+arcpy.ImportToolbox(w + "/GitHub/GEOG_5790/Practical1-ModelBuilder/Practical1_Models.tbx", "Models")
+arcpy.MyExplosion_Models(explosion_location,explosion_distance,
+                                 building_shpfile, destroyed_buildings)                                                        
+                                                          
+'''
 # Run model (with try-catch exceptions)
 try:
     # Print error message if Model toolbox import fails
@@ -35,8 +40,19 @@ try:
         arcpy.ImportToolbox(w + "/GitHub/GEOG_5790/Practical1-ModelBuilder/Practical1_Models.tbx", "Models")
     except arcpy.ExecuteError as e:
         print("Import toolbox error", e)
-     
+       
+    # Print error message if running model fails
+    try:
+        # Run MyExplosion, feeding in parameters.    
+        arcpy.MyExplosion_Models(explosion_location,explosion_distance,
+                                 building_shpfile, destroyed_buildings)                                                        
+                                                          
+    except arcpy.ExecuteError as e:
+        print("Model run error", e)
+        
+except Exception as e:
+    print(e)
 
-
+'''
 
 
