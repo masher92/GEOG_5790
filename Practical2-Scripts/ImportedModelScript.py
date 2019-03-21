@@ -3,7 +3,7 @@ import arcpy
 arcpy.AddMessage("Script running")
 
 ## Change settings in arcGIS: Geoprocessing: Options: Select overwrite outputs
-arcpy.env.overwriteOutput=True # not sure if this actually does anything
+arcpy.env.overwriteOutput=True 
 
 # Specify input parameters
 explosion_location = arcpy.GetParameterAsText(0)
@@ -33,7 +33,7 @@ else:
     print("Not deleted")
 
 # Run model (with try-catch exceptions)    
-    # Print error message if running model fails
+# Print error message if running model fails
 try:
         # Run buffer analysis
         arcpy.Buffer_analysis(explosion_location, Output_Feature_Class, explosion_distance , "FULL", "ROUND", "NONE", "", "PLANAR")

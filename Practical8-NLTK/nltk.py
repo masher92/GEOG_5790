@@ -37,19 +37,18 @@ for i in tokens:
             print (i)
             tokens.remove(i)
 
-
 # Convert tokens into a nltk.Text object
 text = nltk.Text(tokens)
 
 # Find and print the 20 most common words
 fdist_words = nltk.FreqDist(text)
-print(fdist_words.most_common(10))
+print("The 20 most common words (and their frequencies) are: ", fdist_words.most_common(10))
 # Plot a graph of their frequency
-fdist_words.plot(20)
+#fdist_words.plot(20)
 
 # Find and print the 20 most common word lengths
 fdist_lengths =  nltk.FreqDist(len(w) for w in text)
-print(fdist_lengths.most_common(20))
+print("The 20 most common word lengths (and their frequencies)  are: ", fdist_lengths.most_common(20))
 
 # Find all the words over 10 letters long
 long_words = [wrd for wrd in text if len(wrd) > 10]
