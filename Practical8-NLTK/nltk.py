@@ -37,14 +37,6 @@ for i in tokens:
             print (i)
             tokens.remove(i)
             
-# Remove stop words i.e. common words which don't convey meaning            
-# Load stop words
-stop_words = stopwords.words('english')
-# Remove stop words from tokens
-tokens = [word for word in tokens if word not in stop_words]
-# Check on which stop words were removed
-stop_words_removed = [word for word in tokens if word  in stop_words]
-
 # Convert tokens into a nltk.Text object.
 text = nltk.Text(tokens)
 
@@ -80,14 +72,33 @@ for tag in tagged:
             proper_nouns.append(tag[0])
 
 # Filter out some of the dubious proper nouns
-# Use ne_chunk
+# Remove those words which are all upper case or which contain a symbol.
+uppercase = []
+symbols = []
+for noun in proper_nouns:
+    if noun.isupper() == True:
+        uppercase.append(noun)
+        # Remove value from proper nouns list
+        proper_nouns = list(filter(lambda a: a != noun, proper_nouns))
+    if noun.isalpha() == False:
+        symbols.append(noun)
+        # Remove value from proper nouns list
+        proper_nouns = list(filter(lambda a: a != noun, proper_nouns))
 
-from nltk import pos_tag, ne_chunk
-from nltk.tokenize import SpaceTokenizer
-sentence = "i spoke with sumit and rajesh and Samit about the gridlock situation last night @ around 8 pm last nite"
-tokenizer = SpaceTokenizer()
-toks = tokenizer.tokenize(sentence)
-pos = pos_tag(toks)
-chunked_nes = ne_chunk(pos) 
+# Remove stop words i.e. common words which don't convey meaning            
+# Load stop words
+stop_words = stopwords.words('english')
+# Convert all the words
+print ("The following stop words have been removed:")
+cleaned_pn = []
+for noun in proper_nouns:
+   # print(noun.lower())
+    if noun.lower() not in stop_words:
+        cleaned_pn.append(noun)
+    else:
+        print(noun)
 
-nes = [' '.join(map(lambda x: x[0], ne.leaves())) for ne in chunked_nes if isinstance(ne, nltk.tree.Tree)]
+
+
+# Named entity tagging to get locations?
+# Geocoding check https://developer.here.com/blog/turn-text-into-here-maps-with-python-nltk
