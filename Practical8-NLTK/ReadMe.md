@@ -1,7 +1,8 @@
 ## Project 8 - NLTK - Natural Language Toolkit
 
 Natural language processing of the poem "The Wasteland" by T.S.Elliot.  
-Intention is to extract proper nouns from the poem and where these correspond to geocodeable places to tag them on a map.  
+Extracts proper nouns from the poem. 
+Creates a map using Google Geocoding API showing the whereabouts of locations mentioned in the poem.  
 
 Current state:
 * Poem parsed and split into tokens.
