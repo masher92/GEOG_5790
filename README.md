@@ -1,7 +1,7 @@
 # GEOG_5790
-Repository containing code from GEOG_5790 Advanced Programming Module.
-Where required, the data is included in a zipped folder.
-Including work on the following modules:
+Repository containing code from GEOG_5790 Advanced Programming Module.  
+Where required, the data is included in a zipped folder.  
+Including work on the following modules:  
 * Practical 1 - Model Builder
 * Practical 2 - Scripts
 * Practical 3 - AddIns
