@@ -6,7 +6,7 @@ Code which defines and utilises functions for:
 * Writing new data to XML files.
 * Transforming XML into other formats. 
 
-<ins>Background information:  </ins>
+<ins>Background information:</ins>  
 XML is a data format based around text; as such, it is both human and machine readable.  
 The text is "marked up" using angle brackets (<>) which define what the text relates to.  
 XML must comply to certain syntactical standards.  
