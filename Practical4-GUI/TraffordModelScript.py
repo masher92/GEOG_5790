@@ -43,18 +43,18 @@ arcpy.Sort_management(crime, crime_sorted, [["Join_Count", "DESCENDING"]])
 
 # Display the results
 # Get current map document
-#mxd = arcpy.mapping.MapDocument("E:/Msc/Advanced-Programming/GitHub/GEOG_5790/Practical4-GUI/Prac4.mxd")
+mxd = arcpy.mapping.MapDocument("E:/Msc/Advanced-Programming/GitHub/GEOG_5790/Practical4-GUI/Practical4.mxd")
 # Get bit of it currently showing
-#df = mxd.activeDataFrame
+df = mxd.activeDataFrame
 # Make a new layer from the data
-#newlayer = arcpy.mapping.Layer("data/generated/Practical4/crime_sorted.shp")
+newlayer = arcpy.mapping.Layer("E:/Msc/Advanced-Programming/data/generated/Practical4/crime_sorted.shp")
 # Make a new layer from the example layer file
-#layerFile = arcpy.mapping.Layer("data/input/buildings.lyr")
+layerFile = arcpy.mapping.Layer("E:/Msc/Advanced-Programming/data/albertsquare/buildings.lyr")
 # Update the data layer with the symbolism from the example
-#arcpy.mapping.UpdateLayer(df, newlayer, layerFile, True)
+arcpy.mapping.UpdateLayer(df, newlayer, layerFile, True)
 # Say that we want it coloured by the values in the "Joint_Count" column.
-#newlayer.symbology.valueField = "Join_Count"
+newlayer.symbology.valueField = "Join_Count"
 # Add all the unique Joint_Count values to the symbolism (otherwise it just displays one colour).
-#newlayer.symbology.addAllValues()
+newlayer.symbology.addAllValues()
 # Add the data layer to the map at the TOP.
-#arcpy.mapping.AddLayer(df, newlayer,"TOP")
+arcpy.mapping.AddLayer(df, newlayer,"TOP")
