@@ -8,6 +8,9 @@ It takes as inputs:
 
 From this it builds a buffer around the explosion area.
 This is intersected with the buildings to find those which have been destroyed.
+
+@author Molly Asher
+@Version 1.0
 """
 
 # Import arcpy module
@@ -18,14 +21,14 @@ explosion_location = arcpy.GetParameterAsText(0)
 explosion_distance = arcpy.GetParameterAsText(1)
 building_shpfile = arcpy.GetParameterAsText(2)
 
-# Define which parameter will be used to save the shapefile of the buildings destroyed by the bomb.
-# Prevent overwriting error i.e. if this local variable already exists, then delete it.
-destroyed_buildings = arcpy.GetParameterAsText(3)
-
 # Define local variables
 buffer_zone = "intermediate"
 if arcpy.Exists(buffer_zone):
     arcpy.management.Delete(buffer_zone)
+
+# Define which parameter will be used to save the shapefile of the buildings destroyed by the bomb.
+# Prevent overwriting error i.e. if this local variable already exists, then delete it.
+destroyed_buildings = arcpy.GetParameterAsText(3)
 
 # Process: Buffer
 # Creates a circular buffer zone extending out in all directions from the explosion location by the distance specified in the explosion distance.
