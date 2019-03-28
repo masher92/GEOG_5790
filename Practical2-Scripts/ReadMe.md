@@ -4,7 +4,7 @@ This project builds on the contents of Practical 1 - Model Builder.
 It continues to work on tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.    
 In Practical 1 a ModelBuilder model was created which accomplished this in ArcMap.    
 
-The file "RunModelFromScript":  
+<b> The file "RunModelFromScript":</b>   
 Is an external (and standalone script) which runs the BombExplosion model created in ModelBuilder and stored in the Practical1_Models.tbx. 
 It takes as inputs: 
 * A shapefile containing the location of an explosion.
@@ -13,12 +13,12 @@ It takes as inputs:
 It returns as outputs:  
 * A shapefile containing the outlines of the buildings impacted by the explosion.
 
-The file "RunModelAsTool":
+<b> The file "RunModelAsTool": </b>  
 Is a version of this script which is (only) executable from within a Python toolbox i.e. allows us to run the model as a tool. 
 It takes the same inputs and returns same output as above, but they must be input as parameters when running the tool.  
 			
-The file "CreateLaterFile":
+<b> The file "CreateLaterFile":</b>  
 Provides a script for converting a layer file into a shapefile.
 
-To Do:
+To Do:  
 Further improvements to this work would be to attach the script to a menu item, to make it more readily runable.
