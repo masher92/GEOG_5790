@@ -1,9 +1,10 @@
 ## Project 4 - GUI
 
-This project builds a toolbar in ArcGIS for analysing the risk of burglary. 
+This project builds a toolbar in ArcGIS which allows users with shapefiles of the location of previous burglaries and of houses in an area
+to run a model which analyses the risk of burglary for those houses in that area.   
 
-Research suggests that in the 4 weeks following a house getting burgled there is an increased risk of burglary for the houses in the burgled house's immediate vicinity.
-This model uses this theory to analyse the probability of houses in an area getting burgled.  
+The model is based on research which suggests that in the 4 weeks following a house getting burgled there is an increased risk of burglary 
+for the houses in the burgled house's immediate vicinity.  
 
 The project includes:
 * The Practical4Models.tbx which contains the "TraffordModel" constructed in ArcMap's ModelMaker which defines the process for modelling the risk of burglary in an area.
