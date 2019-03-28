@@ -29,7 +29,7 @@ try:
     # Try importing the toolbox, print error message if it fails.
     try:  
         # Import custom toolbox - "Models", assign alias as Models
-        arcpy.ImportToolbox("GitHub/GEOG_5790/Practical1-ModelBuilder/Practical1_Models.tbx", "Models")
+        arcpy.ImportToolbox("GitHub/GEOG_5790/Practical1-ModelBuilder/Explosion Toolbox.tbx", "Models")
         print ("Toolbox imported")
     except arcpy.ExecuteError as e:
         print("Import toolbox error", e)
