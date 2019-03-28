@@ -1,30 +1,16 @@
 ## Project 4 - GUI
 
-This project builds a toolbar in ArcGIS for analysing small crimes. 
+This project builds a toolbar in ArcGIS for analysing the risk of burglary. 
+
+Research suggests that in the 4 weeks following a house getting burgled there is an increased risk of burglary for the houses in the burgled house's immediate vicinity.
+This model uses this theory to analyse the probability of houses in an area getting burgled.  
+
+The project includes:
+* The Practical4Models.tbx which contains the "TraffordModel" constructed in ArcMap's ModelMaker which defines the process for modelling the risk of burglary in an area.
+* The "TraffordModelScript.py" which runs the "TraffordModel" from Practical4Models.tbx as a tool in ArcGIS and processes the results further in order to sort the outputs
+according to risk and to display it colour coded by this level of risk. 
+* A Practical4.mxd file which is required in the creation of this colour-coded display.
+* An AddIn folder which generates an Add-In toolbar for use in ArcMap with a button that runs the "TraffordModelScript.py" from within "Practical4Models.tbx"
 
 
 
-These tools include:  
-* An ArcMap toolbox which contains a model built with Arcmap's ModelBuilder functionality, and the same model in the format of a python script.
-* A copy of the python script found in the toolbox (NB: this script is only executable from within the toolbox, it does not function as a stand alone script)
-	
-The model takes as inputs:  	
-* A shapefile containing the location of an explosion.
-* A shapefile containing the outlines and locations of the surrounding buildings.
-* A distance at which the impact of the explosion is felt.
-
-It returns as outputs:  
-* A shapefile containing the outlines of the buildings impacted by the explosion.
-
-
-These tools include:  
-* An ArcMap toolbox which contains a model built with Arcmap's ModelBuilder functionality, and the same model in the format of a python script.
-* A copy of the python script found in the toolbox (NB: this script is only executable from within the toolbox, it does not function as a stand alone script)
-	
-The model takes as inputs:  	
-* A shapefile containing the location of an explosion.
-* A shapefile containing the outlines and locations of the surrounding buildings.
-* A distance at which the impact of the explosion is felt.
-
-It returns as outputs:  
-* A shapefile containing the outlines of the buildings impacted by the explosion.
