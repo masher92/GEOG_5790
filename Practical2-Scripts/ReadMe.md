@@ -1,13 +1,11 @@
 ## Project 2 - Scripts
 
-This project builds on the contents of Practical 1 - Model Builder.   
-It continues to work on tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.
-In Practical 1 a model was developed to do this which could be run from inside of ArcMap.  
-This project converts this script so that it can be run externally to ArcMap.    
+This project builds on the contents of Practical 1 - Model Builder.     
+It continues to work on tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.    
+In Practical 1 a ModelBuilder model was created which accomplished this in ArcMap. The ModelBuilder Model was also converted into a script which could run the same process inside ArcMap.  
 
-These tools include:
-* A script to convert a "layer" file into a shapefile.
-			
+The file "RunModelFromScript":  
+Is an external (and standalone script) which runs the BombExplosion model created in ModelBuilder and stored in the Practical1_Models.tbx. 
 It takes as inputs: 
 * A shapefile containing the location of an explosion.
 * A shapefile containing the outlines and locations of the surrounding buildings.
@@ -15,9 +13,18 @@ It takes as inputs:
 It returns as outputs:
 * A shapefile containing the outlines of the buildings impacted by the explosion.
 
-These tools include:
-* An ArcMap toolbox which contains a model built with Arcmap's ModelBuilder functionality, and the same model in the format of a python script.
-* A copy of the python script found in the toolbox.
+The file :
 
-Script which:
-* Runs the model from the toolbox
+			
+
+
+
+
+
+
+* A script to convert a "layer" file into a shapefile.
+
+
+To run file from cmd:
+C:\Python27\ArcGIS10.6\python.exe external.py
+

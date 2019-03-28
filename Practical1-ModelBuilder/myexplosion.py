@@ -19,6 +19,7 @@ explosion_distance = arcpy.GetParameterAsText(1)
 building_shpfile = arcpy.GetParameterAsText(2)
 
 # Define which parameter will be used to save the shapefile of the buildings destroyed by the bomb.
+# Prevent overwriting error i.e. if this local variable already exists, then delete it.
 destroyed_buildings = arcpy.GetParameterAsText(3)
 
 # Define local variables

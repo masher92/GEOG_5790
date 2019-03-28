@@ -1,51 +1,53 @@
 '''
-'''
+Script which runs a ModelBuilder Model as a tool within ArcGIS.
+Imports the toolbox which contains the model of interest - in this case the "BombExplosion" model from the Practical1_Models.tbx.
+This model simulates the impact of a bomb exploding on the buildings in its vicinity.
+The model is run by specifiying the locations of the input parameters in the order they are input to the model in ArcGIS.
 
+@author Molly Asher
+@Version 1.0
+'''
 import arcpy
 
+# Print inititalising message
 arcpy.AddMessage("Script running")
 
 ## Change settings in arcGIS: Geoprocessing: Options: Select overwrite outputs
 arcpy.env.overwriteOutput=True 
 
-# Specify input parameters
+# Specify input parameters for running the model. 
 explosion_location = arcpy.GetParameterAsText(0)
 explosion_distance = arcpy.GetParameterAsText(1)
 building_shpfile = arcpy.GetParameterAsText(2)
 
 # Set up a local variable to store the buffer zone (this should not be saved anywhere externally)
 # Prevent overwriting error i.e. if this local variable already exists, then delete it.
-Output_Feature_Class = "intermediate"
-if arcpy.Exists(Output_Feature_Class):
-    arcpy.management.Delete(Output_Feature_Class)
+buffer_zone = "intermediate"
+if arcpy.Exists(buffer_zone):
+    arcpy.management.Delete(buffer_zone)
 
-# Specify where to save outputs
-destroyed_buildings = arcpy.GetParameterAsText(3)    
-
-## Specify a default value if an output location is not given.
-#if destroyed_buildings == '#' or not destroyed_buildings 
-#    destroyed_buildings = "E:/Msc/Advanced-Programming/Practical1" # provide a default value if unspecified
-
-arcpy.AddMessage("Imported files")
-
+# Specify where to save outputs from the model.
+destroyed_buildings = arcpy.GetParameterAsText(3)
 # If results already exist at the location specified, then delete them (to avoid overwriting error)
 if arcpy.Exists(destroyed_buildings):
     arcpy.Delete_management(destroyed_buildings)
-    print("Deleted")
-else:
-    print("Not deleted")
+arcpy.AddMessage("Imported files")
 
 # Run model (with try-catch exceptions)    
 # Print error message if running model fails
 try:
-        # Run buffer analysis
-        arcpy.Buffer_analysis(explosion_location, Output_Feature_Class, explosion_distance , "FULL", "ROUND", "NONE", "", "PLANAR")
+	# Run buffer analysis
+	# Creates a circular buffer zone extending out in all directions from the explosion location by the distance specified in the explosion distance.
+        # Stores this as an intermediate variable.
+	arcpy.Buffer_analysis(explosion_location, Output_Feature_Class, explosion_distance , "FULL", "ROUND", "NONE", "", "PLANAR")
 	arcpy.AddMessage("Created buffer")
-        # Process: Intersect
-        arcpy.Intersect_analysis([building_shpfile ,Output_Feature_Class,], destroyed_buildings, "ALL", "", "INPUT")
-        pythonaddins.MessageBox("Process run", "Update")
+	# Run intersect analysis
+	# Intersects the locations of the buildings with the buffer zone to find those buildings which would be destroyed by the bomb.
+        # Saves the output as destroyed_buildings file. 
+	arcpy.Intersect_analysis([building_shpfile ,Output_Feature_Class,], destroyed_buildings, "ALL", "", "INPUT")
+	pythonaddins.MessageBox("Process run", "Update")
 except arcpy.ExecuteError as e:
-        print("Model run error", e)
+	print("Model run error", e)
 
 
 

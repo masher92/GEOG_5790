@@ -1,5 +1,5 @@
 '''
-Script which runs a model from within ArcGIS.
+Script which runs a ModelBuilder model externally.
 Imports the toolbox which contains the model of interest - in this case the "BombExplosion" model from the Practical1_Models.tbx.
 This model simulates the impact of a bomb exploding on the buildings in its vicinity.
 The model is run by specifiying the locations of the input parameters in the order they are input to the model in ArcGIS.
