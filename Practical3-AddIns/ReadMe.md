@@ -1,24 +1,16 @@
 ## Project 3 - AddIns
 
-This project builds on the contents of Practical 1 and Practical 2.
-It continues to work on tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.
-In Practical 1 a ModelBuilder model was created which accomplished this in ArcMap.
+This project builds on the contents of Practical 1 and Practical 2.    
+It continues to work on tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.    
+It creates an AddIn/* button which can be used to open the Geoprocessing toolbox that was created in Practical 2 and to run the Model within it.  
+This creates a dialogue box prompting the user to supply the parameters required by the model:  
+* A shapefile containing the location of an explosion.  
+* A shapefile containing the outlines and locations of the surrounding buildings.  
+* A distance at which the impact of the explosion is felt.  
 
-Convert code we have so far so that it runs as an addin.
+In order to use the Add-In, the .esriaddin file must be rebuilt and the install addin wizard run.   
+In order to change the content of the Add-In the "ExplosionAddin_addin.py" file in the Install folder must be used.   
+The text inside 'onclick' can be altered to change the functionality associated with the Add-In.  
 
-An add-in is a customization, such as a collection of tools on a toolbar, that plugs into an ArcGIS Desktop application (that is, ArcMap, ArcCatalog, ArcGlobe, and ArcScene) to provide supplemental functionality for accomplishing custom tasks.
+/* An Add-in is a customised plug in to ArcGIS desktop which allow custom tasks to be completed by supply supplementary functions.  
 
-
-AddIn project -
-Addin toolbar - A toolbar is a container for buttons, tools, combo boxes, tool palettes, and menus. Toolbars can be floating or docked in desktop applications, 
-just like any system toolbar provided by Esri. 
-Toolbars can also be activated so they show up when a desktop application is started.
-
-AddinButton-
-A button is the simplest form of customization that can be used to execute some business logic when clicked.
-
-
-Note:
-When making changes to addIN
-Note that each time you change the addin code, you'll need to rebuild the addin.esriaddin and run the install addin wizard. 
-You'll also need to restart ArcMap.
