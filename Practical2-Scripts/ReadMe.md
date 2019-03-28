@@ -15,7 +15,8 @@ It returns as outputs:
 
 <b> The file "RunModelAsTool": </b>  
 Is a version of this script which is (only) executable from within a Python toolbox i.e. allows us to run the model as a tool. 
-It takes the same inputs and returns same output as above, but they must be input as parameters when running the tool.  
+It takes the same inputs and returns same output as above, but they must be input as parameters when running the tool.    
+This script is contained within the toolbox "Explosion Toolbox (v2).tbx"  
 			
 <b> The file "CreateLaterFile":</b>  
 Provides a script for converting a layer file into a shapefile.
