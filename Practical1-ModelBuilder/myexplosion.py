@@ -19,16 +19,21 @@ explosion_location = arcpy.GetParameterAsText(0)
 explosion_distance = arcpy.GetParameterAsText(1)
 building_shpfile = arcpy.GetParameterAsText(2)
 
-Intersect__2_ = arcpy.GetParameterAsText(3)
+# Define location of where to save the shapefile of the buildings destroyed by the bomb.
+destroyed_buildings = arcpy.GetParameterAsText(3)
 
-# Local variables:
-Output_Feature_Class = "intermediate"
-if arcpy.Exists(Output_Feature_Class):
-    arcpy.management.Delete(Output_Feature_Class)
+# Define local variables
+buffer_zone = "intermediate"
+if arcpy.Exists(buffer_zone):
+    arcpy.management.Delete(buffer_zone)
 
 # Process: Buffer
-arcpy.Buffer_analysis(explosion_location, Output_Feature_Class, explosion_distance , "FULL", "ROUND", "NONE", "", "PLANAR")
+# Creates a circular buffer zone extending out in all directions from the explosion location by the distance specified in the explosion distance.
+# Stores this as an intermediate variable.
+arcpy.Buffer_analysis(explosion_location, buffer_zone, explosion_distance , "FULL", "ROUND", "NONE", "", "PLANAR")
 
 # Process: Intersect
-arcpy.Intersect_analysis([building_shpfile ,Output_Feature_Class,], Intersect__2_, "ALL", "", "INPUT")
+# Intersects the locations of the buildings with the buffer zone to find those buildings which would be destroyed by the bomb.
+# Saves the output as destroyed_buildings file. 
+arcpy.Intersect_analysis([building_shpfile ,buffer_zone,], destroyed_buildings, "ALL", "", "INPUT")
 
