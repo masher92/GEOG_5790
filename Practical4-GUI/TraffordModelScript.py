@@ -23,23 +23,23 @@ arcpy.env.workspace = "E:/Msc/Advanced-Programming/"
 Burglaries = arcpy.GetParameterAsText(0)
 Distance = arcpy.GetParameterAsText(1)
 Buildings = arcpy.GetParameterAsText(2)
-Out = "data/generated/Practical4/crime.shp"
-#Out_sorted = "data/generated/Practical4/crime_sorted.shp"
+crime = "data/generated/Practical4/crime.shp"
+crime_sorted = "data/generated/Practical4/crime_sorted.shp"
 
 # If results already exist at the location specified, then delete them (to avoid overwriting error).
-if arcpy.Exists(Out):
-    arcpy.Delete_management (Out)
+if arcpy.Exists(crime):
+    arcpy.Delete_management (crime)
 
 # Import custom toolbox - "Practical4_Models", rename as models
 arcpy.ImportToolbox("E:/Msc/Advanced-Programming/GitHub/GEOG_5790/Practical4-GUI/Practical4Models.tbx", "models")
 # Run the TraffordModel, from within the models toolbox
-arcpy.TraffordModel_models(Burglaries, Distance, Buildings, Out)
+arcpy.TraffordModel_models(Burglaries, Distance, Buildings, crime)
 
 # 
-#if arcpy.Exists(Out_sorted):
-#    arcpy.Delete_management (Out_sorted)
+if arcpy.Exists(crime_sorted):
+    arcpy.Delete_management (crime_sorted)
 # Create the output data, sorted. 
-#arcpy.Sort_management(Out, Out_sorted, [["Join_Count", "DESCENDING"]])
+arcpy.Sort_management(crime, crime_sorted, [["Join_Count", "DESCENDING"]])
 
 # Display the results
 # Get current map document
