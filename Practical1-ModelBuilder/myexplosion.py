@@ -1,5 +1,5 @@
 """
-Script exported from a model built in ArcGIS.
+Script exported from a model built in ArcGIS (NB: it does not function as a stand alone script)
 
 It takes as inputs:
     The location of an explosion (shp)
@@ -13,13 +13,12 @@ This is intersected with the buildings to find those which have been destroyed.
 # Import arcpy module
 import arcpy
 
-# Specifies which location the particular parameter will be found at
-# in the list of parameters fed to it in Arc.
+# Define which parameter (in a list of parameters fed to Arc) will be used for each of the following:
 explosion_location = arcpy.GetParameterAsText(0)
 explosion_distance = arcpy.GetParameterAsText(1)
 building_shpfile = arcpy.GetParameterAsText(2)
 
-# Define location of where to save the shapefile of the buildings destroyed by the bomb.
+# Define which parameter will be used to save the shapefile of the buildings destroyed by the bomb.
 destroyed_buildings = arcpy.GetParameterAsText(3)
 
 # Define local variables
