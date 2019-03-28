@@ -1,5 +1,9 @@
 ## Project 3 - AddIns
 
+This project builds on the contents of Practical 1 and Practical 2.
+It continues to work on tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.
+In Practical 1 a ModelBuilder model was created which accomplished this in ArcMap.
+
 Convert code we have so far so that it runs as an addin.
 
 An add-in is a customization, such as a collection of tools on a toolbar, that plugs into an ArcGIS Desktop application (that is, ArcMap, ArcCatalog, ArcGlobe, and ArcScene) to provide supplemental functionality for accomplishing custom tasks.
