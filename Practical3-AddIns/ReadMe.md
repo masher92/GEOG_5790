@@ -7,7 +7,7 @@ It creates an AddIn\* button which can be used to open the Geoprocessing toolbox
 The Add-In generates a dialogue box prompting the user to supply the parameters required by the model, namely:  
 * A shapefile containing the location of an explosion.  
 * A shapefile containing the outlines and locations of the surrounding buildings.  
-* A distance at which the impact of the explosion is felt.  
+* A distance at which the impact of the explosion is felt.    
 It also requires the user where to specify the output, namely:
 * A shapefile containing the outlines of the buildings destroyed by the bomb.
 
