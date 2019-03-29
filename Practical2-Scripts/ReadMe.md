@@ -10,6 +10,7 @@ It takes as inputs:
 * A shapefile containing the location of an explosion.
 * A shapefile containing the outlines and locations of the surrounding buildings.
 * A distance at which the impact of the explosion is felt.  
+
 It returns as outputs:  
 * A shapefile containing the outlines of the buildings impacted by the explosion.
 
