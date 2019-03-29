@@ -12,13 +12,13 @@ The Add-In generates a dialogue box prompting the user to supply the parameters 
 It also requires the user where to specify the output, namely:
 * A shapefile containing the outlines of the buildings destroyed by the bomb.
 
-<u> In order to install the AddIn:</u> 
+<ins> In order to install the AddIn:</ins> 
 * Open the AddIn folder and run the "makeaddin.py" file and the .esriaddin file to install the addin.
 * Open ArcGIS and go to "Customize" on top toolbar and select "AddIn Manager" to check the addin is installed.
 * If the add-in appears then select "customise", click the toolbars tab and scrool down to the "Explosion" toolbar and ensure it is selected.
 * Addin should now appear somewhere floating on docked to one of the top toolbars.
 
-<u>  In order to edit the Addin and change the functionality associated with the Add-In: </u> 
+<ins>  In order to edit the Addin and change the functionality associated with the Add-In: </ins> 
 * Open the "ExplosionAddin_addin.py" file in the Install folder.
 * Edit the text inside the class 'onclick
 
