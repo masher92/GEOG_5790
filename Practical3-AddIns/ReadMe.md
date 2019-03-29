@@ -21,8 +21,7 @@ In order to edit the Addin and change the functionality associated with the Add-
 * Open the "ExplosionAddin_addin.py" file in the Install folder.
 * Edit the text inside the class 'onclick
 
-\* <i> An Add-in is a customised plug in to ArcGIS desktop which allow custom tasks to be completed by supply supplementary functions.  
-More information about building Add-Ins can be found here: http://desktop.arcgis.com/en/arcmap/latest/analyze/python-addins/creating-an-add-in-project.htm </i>
+\* <i> An Add-in is a customised plug in to ArcGIS desktop which allow custom tasks to be completed by supply supplementary functions. More information about building Add-Ins can be found here: http://desktop.arcgis.com/en/arcmap/latest/analyze/python-addins/creating-an-add-in-project.htm </i>
 
 Improvements:  
 * Change the message outputting functionality so it gives progress report.
