@@ -8,6 +8,7 @@ The Add-In generates a dialogue box prompting the user to supply the parameters 
 * A shapefile containing the location of an explosion.  
 * A shapefile containing the outlines and locations of the surrounding buildings.  
 * A distance at which the impact of the explosion is felt.    
+
 It also requires the user where to specify the output, namely:
 * A shapefile containing the outlines of the buildings destroyed by the bomb.
 
