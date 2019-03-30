@@ -5,6 +5,7 @@ Reads in poem from the Gutenburg Project website.
 Tokenizes the poem into words.
 Computes various statistics on these words and their frequencies.
 Identifies proper nouns through part of speech tagging.
+Filters the proper nouns (due to formatting of poem lots of words are incorrectly identifed as proper nouns) by cutting out stop words and those which are all upper case or include a symbol.
 
 """
 
@@ -97,8 +98,6 @@ for noun in proper_nouns:
         cleaned_pn.append(noun)
     else:
         print(noun)
-
-
 
 # Named entity tagging to get locations?
 # Geocoding check https://developer.here.com/blog/turn-text-into-here-maps-with-python-nltk
