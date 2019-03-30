@@ -12,3 +12,10 @@ Including work on the following modules:
 * Practical 8 - NLTK
 * Practical 9 - Cellular Automata
 * Practical 10 - Multiprocessing
+
+To Do:
+End of GUI - making the chloropleth map
+Practical 7 - ensure the documentation is good.
+practical 8 - attempt the geocoding
+practical 9 - check on the model
+practical 10 - attempt!
