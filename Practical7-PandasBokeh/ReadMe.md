@@ -11,7 +11,4 @@ These include:
 <ins> Bokeh </ins>  
 Boken is a python library for creating interactive visualisations.
 This project contains a Jupyer notebook containing worked examples from: https://bokeh.pydata.org/en/latest/docs/user_guide/quickstart.html
-
-Current status:
-* Workbooks not rendering in github - check back later and see if fixed.
-* Check where Bokeh examples drawn from
+For more examples, see: https://nbviewer.jupyter.org/github/bokeh/bokeh-notebooks/tree/master/tutorial/
