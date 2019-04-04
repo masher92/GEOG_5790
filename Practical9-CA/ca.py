@@ -11,15 +11,14 @@ For the purposes of the model, the boundary cells are ignored. (e.g. specifying 
 @Version 1.0
 """
 
+# Import functions
+import tkinter
+from matplotlib.backends.backend_tkagg import (
+    FigureCanvasTkAgg)
+# Implement the default Matplotlib key bindings.
+from matplotlib.figure import Figure
 import matplotlib
-
-# Define variables
-number_of_iterations = 10
-width = 10
-height = 10
-fire_start_x = 4
-fire_start_y = 4
-fuel_amount = 5
+import matplotlib.animation as anim
 
 # Define function to check environment has been produced correctly
 def print_environment():
@@ -28,6 +27,55 @@ def print_environment():
             print(environment[h][w], end=" ")
         print("")
     print("")
+
+# Define function which models the spread of fire through the environment over X number iterations.
+# This is used as input to the 'run' function which produces the animation.
+def update(num_of_iterations):
+    for step in range(num_of_iterations):
+        for h in range(1, height - 1):
+            for w in range(1, width - 1):
+                # Ensures that the environment created within the for loop becomes the environment
+                # in the global workspace.
+                global environment
+                # For each position in the environment, check if that cell or any of 
+                # the neighbouring cells are on fire  
+                status = "NotOnFire"
+                if (environment [h][w]) < fuel_amount: status = "OnFire"
+                if (environment [h-1][w-1]) < fuel_amount: status = "OnFire"
+                if (environment [h-1][w]) < fuel_amount: status = "OnFire"   
+                if (environment [h-1][w+1]) < fuel_amount: status = "OnFire"   
+                if (environment [h+1][w-1]) < fuel_amount: status = "OnFire"
+                if (environment [h+1][w]) < fuel_amount: status = "OnFire"   
+                if (environment [h+1][w+1]) < fuel_amount: status = "OnFire"   
+                if (environment [h][w-1]) < fuel_amount: status = "OnFire"
+                if (environment [h][w+1]) < fuel_amount: status = "OnFire"  
+                # If status in any of these cells is OnFire, then set cell on fire
+                if (status == 'OnFire') & (environment[h][w] > 0):
+                    results[h][w] -= 1
+        environment= results
+        # Use this line to simply print array
+        #print_environment()
+        matplotlib.pyplot.imshow(environment)
+        matplotlib.pyplot.show()
+        
+    # Stopping condition: exit the iterative process once all the cells within the edge boundary are 0
+        total = 0
+        for h in range(1, height - 1): 
+            for w in range(1, width - 1): 
+                total = total + environment[h][w]
+        if (total == 0):
+            print("ends at iteration ", step)
+            print (environment [h][w])
+            break
+
+
+# Define variables
+num_of_iterations = 10
+width = 10
+height = 10
+fire_start_x = 4
+fire_start_y = 4
+fuel_amount = 5
 
 # Create a 2D environment containing the fuel amount in each point.
 environment = []
@@ -46,127 +94,57 @@ for h in range(height):
 
 # Start a fire by reducing the fuel amount at one cell by 1.
 environment[fire_start_y][fire_start_x] -= 1
-print_environment() 
+#print_environment() 
 
-# Model the spread of fire through the environment over X number iterations
-num_iterations = 30
-for step in range(num_iterations):
-    for h in range(1, height - 1):
-        for w in range(1, width - 1):
-            # For each position in the environment, check if that cell or any of 
-            # the neighbouring cells are on fire  
-            status = "NotOnFire"
-            if (environment [h][w]) < fuel_amount: status = "OnFire"
-            if (environment [h-1][w-1]) < fuel_amount: status = "OnFire"
-            if (environment [h-1][w]) < fuel_amount: status = "OnFire"   
-            if (environment [h-1][w+1]) < fuel_amount: status = "OnFire"   
-            if (environment [h+1][w-1]) < fuel_amount: status = "OnFire"
-            if (environment [h+1][w]) < fuel_amount: status = "OnFire"   
-            if (environment [h+1][w+1]) < fuel_amount: status = "OnFire"   
-            if (environment [h][w-1]) < fuel_amount: status = "OnFire"
-            if (environment [h][w+1]) < fuel_amount: status = "OnFire"  
-            # If status in any of these cells is OnFire, then set cell on fire
-            if (status == 'OnFire') & (environment[h][w] > 0):
-                results[h][w] -= 1
-    environment= results
-    print_environment()
-    #matplotlib.pyplot.imshow(environment)
-    #matplotlib.pyplot.show()
-    
-# Stopping condition: exit the iterative process once all the cells within the edge boundary are 0
-    total = 0
-    for h in range(1, height - 1): 
-        for w in range(1, width - 1): 
-            total = total + environment[h][w]
-    if (total == 0):
-        print("ends at iteration ", step)
-        break
-   
-def update(num_iterations):
-    for step in range(num_iterations):
-        for h in range(1, height - 1):
-            for w in range(1, width - 1):
-                global environment
-                # For each position in the environment, check if that cell or any of 
-                # the neighbouring cells are on fire  
-                status = "NotOnFire"
-                if (environment [h][w]) < fuel_amount: status = "OnFire"
-                if (environment [h-1][w-1]) < fuel_amount: status = "OnFire"
-                if (environment [h-1][w]) < fuel_amount: status = "OnFire"   
-                if (environment [h-1][w+1]) < fuel_amount: status = "OnFire"   
-                if (environment [h+1][w-1]) < fuel_amount: status = "OnFire"
-                if (environment [h+1][w]) < fuel_amount: status = "OnFire"   
-                if (environment [h+1][w+1]) < fuel_amount: status = "OnFire"   
-                if (environment [h][w-1]) < fuel_amount: status = "OnFire"
-                if (environment [h][w+1]) < fuel_amount: status = "OnFire"  
-                # If status in any of these cells is OnFire, then set cell on fire
-                if (status == 'OnFire') & (environment[h][w] > 0):
-                    results[h][w] -= 1
-        environment= results
-        print_environment()
-        #matplotlib.pyplot.imshow(environment)
-        #matplotlib.pyplot.show()
-        
-    # Stopping condition: exit the iterative process once all the cells within the edge boundary are 0
-        total = 0
-        for h in range(1, height - 1): 
-            for w in range(1, width - 1): 
-                total = total + environment[h][w]
-        if (total == 0):
-            print("ends at iteration ", step)
-            break
+''' 2. Creating the visualisation '''
+# Function to display the plot
+def run():
+    # Set animation as a global variable
+    global animation
+    animation = anim.FuncAnimation(fig, update, frames=6, repeat=False)
+    #canvas.show()
+    canvas.draw()
 
-update(10)    
+# Function to create a quit button
+def _quit():
+    root.quit()     # stops mainloop
+    root.destroy()  # this is necessary on Windows to prevent
+                    # Fatal Python Error: PyEval_RestoreThread: NULL tstate 
 
-
-"""
-Step 2: Initialise GUI main window.
-"""
-# Import packages
-import os
-import agentframework9 as af
-import random
-#import operator
-from sys import argv
-import csv
-import matplotlib
-matplotlib.use('TkAgg') # Needs to be before any other matplotlb imports
-#matplotlib.use('TkInter')
-import matplotlib.pyplot as pyplot
-import matplotlib.animation as anim
-import tkinter
-import requests
-import bs4
-
-print("Step 2: Initialise GUI main window")
+#Initialise the GUI main window
 root = tkinter.Tk() # Main window.
-root.wm_title("Model")
+root.wm_title("Forest fire")
 
-print("Step 6: Initialising GUI.")
+## Initialise the GUI
 # Set up the figure and loop variables.
-fig = pyplot.figure(figsize=(7, 7))
-ax = fig.add_axes([0, 0, 1, 1])
-carry_on = True
+fig = Figure()
+a = fig.add_subplot(111)
+#a.imshow(environment)
+carry_on = False
 init = True
 halted = False
 rerunid = 0
 total_ite = 0;
-print("A GUI window should appear. Please select \"Run Model\" from the \"Model\" menu to run the model.")
+print("A GUI window should appear. Please select \"Run Model\" from the \"Model\" menu to run the model. If you do not wish to run the model, select 'Quit' to exit safely")
 
+# Set up canvas
+canvas = FigureCanvasTkAgg(fig, master=root)  # A tk.DrawingArea.
+canvas.draw()
 
-#animation = anim.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
-
-def run():
-    global animation
-    animation = anim.FuncAnimation(fig, update, frames=gen_function, repeat=False)
-    #canvas.show()
-    canvas.draw()
-
-canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
-canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
-
+# Create a menu bar
 menu_bar = tkinter.Menu(root)
 root.config(menu=menu_bar)
 model_menu = tkinter.Menu(menu_bar)
+# Create a drop down menu called Model
 menu_bar.add_cascade(label="Model", menu=model_menu)
+# Creata an option to run the model
 model_menu.add_command(label="Run model", command=run)
+
+# Create the quit button
+button = tkinter.Button(master=root, text="Quit", command=_quit)
+button.pack(side=tkinter.BOTTOM)
+
+# 
+tkinter.mainloop()
+
+
