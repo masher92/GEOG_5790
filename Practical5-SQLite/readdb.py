@@ -36,7 +36,6 @@ for description in c.description:
 	print(description[0]) # Name - note that [1]…[6] are Nones.
 
 
-
 #######
 # execute an SQL command,
 c.execute("SELECT * FROM Results") 
