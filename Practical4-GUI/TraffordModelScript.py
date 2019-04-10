@@ -1,5 +1,5 @@
 '''
-Script which runs a ModelBuilder Model as a tool within ArcGIS (NB: it does not function as a stand alone script).
+Script which runs a ModelBuilder Model as a tool, from a toolbar within ArcGIS (NB: it does not function as a stand alone script).
 
 Research suggests that in the 4 weeks following a house getting burgled there is an increased risk of burglary for the houses in the burgled house's immediate vicinity.
 This model uses this theory to analyse the probability of houses in an area getting burgled.  
@@ -10,9 +10,11 @@ The model takes as inputs:
 * The buildings in the area (shp)
 
 A buffer is built around the locations of the burglaries and then for each building in the area a count is made of how many of
-the burglary buffer zones it intersect with.
+the burglary buffer zones it intersect with. The houses are sorted in descending order according to their risk of burglary.
 
-This is visualised in....
+The houses are coloured according to this burglary risk, by stealing the symbology from another layer (buildings.lyr).
+
+Running the model from the toolbar adds the final output map into ArcGIS
 
 @author Molly Asher
 @Version 1.0
@@ -59,11 +61,19 @@ mxd = arcpy.mapping.MapDocument("CURRENT")
 df = mxd.activeDataFrame
 
 # Make a layer from the crime_sorted file which we want to set the symbology on
+<<<<<<< HEAD
+newlayer = arcpy.mapping.Layer(crime_sorted)
+arcpy.mapping.AddLayer(df, newlayer,"TOP")  #BOTTOM or AUTO_ARRANGE
+
+# Make a layer from the file which we want to steal the symbology from.
+oldlayer = arcpy.mapping.Layer("E:/Msc/Advanced-Programming/GitHub/GEOG_5790/Data/Practical1-4-Data/buildings.lyr")
+=======
 newlayer = arcpy.mapping.Layer("E:/Msc/Advanced-Programming/GitHub/GEOG_5790/Practical4-GUI/crime_sorted.shp")
 arcpy.mapping.AddLayer(df, newlayer,"TOP")  #BOTTOM or AUTO_ARRANGE
 
 # Make a layer from the file which we want to steal the symbology from.
 oldlayer = arcpy.mapping.Layer("E:/Msc/Advanced-Programming/GitHub/GEOG_5790/Practical4-GUI/albertsquare/buildings.lyr")
+>>>>>>> 4f49dc36547936f808f6b7066c2112f95335c450
 # Add it to the map (to test if it is being read correctly)
 #arcpy.mapping.AddLayer(df, oldlayer,"TOP")  #BOTTOM or AUTO_ARRANGE
 
