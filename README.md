@@ -14,8 +14,7 @@ Including work on the following modules:
 * Practical 10 - Multiprocessing
 
 To Do:
-End of GUI - making the chloropleth map
-Practical 7 - ensure the documentation is good.
-practical 8 - attempt the geocoding
-practical 9 - check on the model
-practical 10 - attempt!
+Practical 7 - check why Bokeh plots are not rendering.  
+practical 8 - Look through geocoding stuff (without google API).  
+practical 9 - check on the model  
+practical 10 - attempt!  
