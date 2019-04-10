@@ -8,7 +8,7 @@ class RiskButton(object):
         self.checked = False
     def onClick(self):
         # Print message to confirm initialisation
-        pythonaddins.MessageBox("I am working", "Working?")
+        #pythonaddins.MessageBox("I am working", "Working?")
         # Run toolbox
 	pythonaddins.GPToolDialog("E:/Msc/Advanced-Programming/GitHub/GEOG_5790/Practical4-GUI/Practical4Models.tbx", "TraffordModelScript")
         pass
