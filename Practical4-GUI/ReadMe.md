@@ -1,6 +1,6 @@
 ## Project 4 - GUI
 
-This project builds a toolbar in ArcGIS which runs a model analysing the risk of burglary for houses in an area, using:
+This project builds an add-in toolbar in ArcGIS which runs a model analysing the risk of burglary for houses in an area, using:
 * A shapefile of the location of previous burglaries.
 * A shapefile of the location of houses in an area.  
 
