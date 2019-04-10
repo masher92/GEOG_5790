@@ -20,5 +20,6 @@ In order to install the toolbar:
 * If the add-in appears then select "customise", click the toolbars tab and scrool down to the "Burglary tools" toolbar and ensure it is selected.
 * Addin should now appear somewhere floating on docked to one of the top toolbars.
 
+NB: If not working then check the model is trying to get the data from the right place/file paths/working directory etc. Previously stopped working because the file path to the builds.lyr file with the symbology got corrupted.
 
 
