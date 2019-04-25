@@ -1,6 +1,6 @@
 ## Project 2 - Scripts
 
-This project cotnains tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.  
+This project contains tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.  
 This project builds on the contents of Practical 1 - Model Builder which created a ModelBuilder model to accomplish this.  
 The data it is based on can be found in Data/Practical1-4-Data.zip.      
 
