@@ -1,8 +1,8 @@
 ## Project 3 - AddIns
 
-This project contains tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.
-This project builds on the contents of Practical 1 and Practical 2 which created and used a ModelBuilder model to accomplish this.
-The data it is based on can be found in Data/Practical1-4-Data.zip.
+This project contains tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.  
+This project builds on the contents of Practical 1 and Practical 2 which created and used a ModelBuilder model to accomplish this.  
+The data it is based on can be found in Data/Practical1-4-Data.zip.  
 
 The project creates an AddIn\* button which can be used to open the Geoprocessing toolbox that was created in Practical 2 and to run the Model within it.  
 
