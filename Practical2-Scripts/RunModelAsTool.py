@@ -14,6 +14,7 @@ This is intersected with the buildings to find those which have been destroyed.
 @Version 1.0
 '''
 
+# Import arcpy module
 import arcpy
 
 # Print inititalising message
@@ -22,7 +23,7 @@ arcpy.AddMessage("Script running")
 ## Change settings in arcGIS: Geoprocessing: Options: Select overwrite outputs
 arcpy.env.overwriteOutput=True 
 
-# Specify input parameters for running the model. 
+# Define which parameter (in a list of parameters fed to Arc) will be used for each of the following:
 explosion_location = arcpy.GetParameterAsText(0)
 explosion_distance = arcpy.GetParameterAsText(1)
 building_shpfile = arcpy.GetParameterAsText(2)
@@ -33,9 +34,9 @@ buffer_zone = "intermediate"
 if arcpy.Exists(buffer_zone):
     arcpy.management.Delete(buffer_zone)
 
-# Specify where to save outputs from the model.
+# Define which parameter will be used to save the shapefile of the buildings destroyed by the bomb.
+# Prevent overwriting error i.e. if this local variable already exists, then delete it.
 destroyed_buildings = arcpy.GetParameterAsText(3)
-# If results already exist at the location specified, then delete them (to avoid overwriting error)
 if arcpy.Exists(destroyed_buildings):
     arcpy.Delete_management(destroyed_buildings)
 arcpy.AddMessage("Imported files")
@@ -52,10 +53,11 @@ try:
 	# Intersects the locations of the buildings with the buffer zone to find those buildings which would be destroyed by the bomb.
         # Saves the output as destroyed_buildings file. 
 	arcpy.Intersect_analysis([building_shpfile ,buffer_zone,], destroyed_buildings, "ALL", "", "INPUT")
-	#pythonaddins.MessageBox("Process run", "Update")
+	arcpy.AddMessage("Identified destroyed buildings")
 except arcpy.ExecuteError as e:
 	print("Model run error", e)
 
-
+# Print completion message
+arcpy.AddMessage("Model run complete.")
 
 
