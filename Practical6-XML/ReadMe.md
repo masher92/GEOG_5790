@@ -13,7 +13,6 @@ There are various XML schemas which dictate constraints for formatting of XML do
  
 Two of the most popular schemas are:
 * [Document Type Defintion (DTD)](https://www.w3schools.com/xml/xml_dtd_intro.asp)
-* 
-* XML schema definition (XSD)  
+* [XML schema definition (XSD) ](https://www.w3schools.com/xml/schema_intro.asp)
 
 XML may also be converted into other formats (e.g. HTML) using XSL (eXtensible Stylesheet Language).
