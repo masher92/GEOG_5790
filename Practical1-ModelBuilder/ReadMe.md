@@ -1,6 +1,7 @@
 ## Project 1 - Model Builder
 
 This project contains tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.  
+The data it is based on can be found in Data/Practical1-4-Data.zip.  
 
 These tools include:  
 * An ArcMap toolbox which contains a model built with Arcmap's ModelBuilder functionality, and the same model in the format of a python script.

@@ -1,8 +1,8 @@
 ## Project 2 - Scripts
 
-This project builds on the contents of Practical 1 - Model Builder.     
-It continues to work on tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.    
-In Practical 1 a ModelBuilder model was created which accomplished this in ArcMap.    
+This project cotnains tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.  
+This project builds on the contents of Practical 1 - Model Builder which created a ModelBuilder model to accomplish this.  
+The data it is based on can be found in Data/Practical1-4-Data.zip.      
 
 <b> The file "RunModelFromScript":</b>   
 Is an external (and standalone script) which runs the BombExplosion model created in ModelBuilder and stored in the Practical1_Models.tbx. 
