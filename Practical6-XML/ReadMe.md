@@ -12,7 +12,8 @@ XML must comply to certain syntactical standards.
 There are various XML schemas which dictate constraints for formatting of XML documents against which XML files can be validated.      
  
 Two of the most popular schemas are:
-* Document Type Defintion (DTD)
+* [Document Type Defintion (DTD)](https://www.w3schools.com/xml/xml_dtd_intro.asp)
+* 
 * XML schema definition (XSD)  
 
 XML may also be converted into other formats (e.g. HTML) using XSL (eXtensible Stylesheet Language).
