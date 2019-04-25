@@ -9,7 +9,7 @@ Code which defines and utilises functions for:
 XML is a data format based around text; as such, it is both human and machine readable.  
 The text is "marked up" using angle brackets (<>) which define what the text relates to.  
 XML must comply to certain syntactical standards.  
-There are various XML schemas which dictate constraints for formatting of XML documents. XML can be validated against these schema for validity.  
+There are various XML schemas which dictate constraints for formatting of XML documents against which XML files can be validated.      
  
 Two of the most popular schemas are:
 * Document Type Defintion (DTD)
