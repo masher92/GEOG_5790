@@ -9,7 +9,7 @@ import os
 import sqlite3
 
 # Set working directory
-os.chdir("E:/Msc/Advanced-Programming/Practical5-SQLite")
+os.chdir("E:/Msc/Advanced-Programming/GitHub/GEOG_5790/Practical5-SQLite")
 
 # Create a database - resultsdb -  and create a connection to it. 
 conn = sqlite3.connect('resultsdb.sqlite')
