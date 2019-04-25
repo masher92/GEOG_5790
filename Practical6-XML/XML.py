@@ -17,7 +17,7 @@ os.chdir ("E:/Msc/Advanced-Programming/data/Practical6-XML/")
 def readXML (XML_file):
     """
     Open an XML file and edit encoding.
-    : param xml_file: The filepath to the XML to connect to.
+    : param XML_file: The filepath to the XML to connect to.
     : return: the root file of the XML document
     """
     xml = open(XML_file).read() # Open xml file
@@ -90,10 +90,12 @@ def transformXML (stylesheet, root):
 # A root element will enclose all the other elements.
 root_map1 = readXML ("map1.xml")
 root_map2 = readXML ("map2.xml")
+print ("roots created")
         
 # Validate the XML code using both the xsd and dtd schema methods.
 validateXML_dtd(root_map1, "map1.dtd")
 validateXML_xsd(root_map2, "map2.xsd")
+print ("XML validated")
 
 # Inspect the contents of the XML.
 print (root_map1.tag)  # map	
@@ -117,9 +119,11 @@ out = etree.tostring(root_map1, pretty_print=True)
 print(out)
 # Write altered xml to a file, specifying to be writting in binary mode.
 writeXML(out, 'xml4.xml', 'wb')
+print ("edited XML written to file")
 
 # Transform the XML into HTML, according to the rules in the specified stylesheet.
 transformed_text = transformXML("map3.xsl", root_map1)
+print ("XML converted to HTML")
 
 # Write to file
 writeXML (transformed_text,'map3.html', 'w' )
