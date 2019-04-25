@@ -89,11 +89,12 @@ for h in range(height):
     results.append(results_row)
 
 # Check the environment
-#print_environment()    
+print ("Original environment:")
+print_environment()    
 
 # Start a fire by reducing the fuel amount at one cell by 1.
 environment[fire_start_y][fire_start_x] -= 1
-#print_environment() 
+print ("Fire started")
 
 ''' 2. Creating the visualisation '''
 # Function to display the plot
@@ -109,7 +110,8 @@ def _quit():
     root.quit()     # stops mainloop
     root.destroy()  # this is necessary on Windows to prevent
                     # Fatal Python Error: PyEval_RestoreThread: NULL tstate 
-y
+
+
 #Initialise the GUI main window
 root = tkinter.Tk() # Main window.
 root.wm_title("Forest fire")
