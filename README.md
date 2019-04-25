@@ -1,5 +1,5 @@
 # GEOG_5790
-Repository containing code from GEOG_5790 Advanced Programming Module.  
+Repository containing code from GEOG_5790 Advanced Programming Module (University of Leeds).  
 Where required, the data is included in a zipped folder.  
 Including work on the following modules:  
 * Practical 1 - Model Builder
