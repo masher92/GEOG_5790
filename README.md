@@ -10,7 +10,6 @@ Including work on the following modules:
 * Practical 7 - Pandas/Bokeh
 * Practical 8 - NLTK
 * Practical 9 - Cellular Automata
-* Practical 10 - Multiprocessing
 
 Where data is required in the projects it is contained within the Data directory and signposted to in the Project ReadMe.  
 
