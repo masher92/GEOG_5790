@@ -86,20 +86,22 @@ print(f"Sample slope and elevation distribution matches distribution: {all (x <0
 '''
 Order dataframe to optomise route
 '''
-# Create an array containing the sample locations
-sample_locations = np.array(sample[['x', 'y']])[:100]
-# Route provides a list of the order to travel to each location by row number
-route = two_opt(sample_locations,0.001)
-# Sort the dataframe according to this order, so points appear in the order they should be visited.
-sample_locations_sorted = np.concatenate((np.array([sample_locations[route[i]] for i in range(len(route))]),np.array([sample_locations[0]])))
-# Plot the locations
-plt.scatter(sample_locations[:,0],sample_locations[:,1])
-# Plot the path.
-plt.plot(sample_locations_sorted[:,0],sample_locations_sorted[:,1])
-plt.show
-print("Distance of route: " + str(round(path_distance(route,cities),1)) + "m")
-# Return the dataframe in the order the points should be visited
-sorted_sample = sample.reindex(route)
+if find_optimum_route == 'Yes':
+    print ("Optimising route")
+    # Create an array containing the sample locations
+    sample_locations = np.array(sample[['x', 'y']])[:5]
+    # Route provides a list of the order to travel to each location by row number
+    route = two_opt(sample_locations,0.001)
+    # Sort the dataframe according to this order, so points appear in the order they should be visited.
+    sample_locations_sorted = np.concatenate((np.array([sample_locations[route[i]] for i in range(len(route))]),np.array([sample_locations[0]])))
+    # Plot the locations
+    plt.scatter(sample_locations[:,0],sample_locations[:,1])
+    # Plot the path.
+    plt.plot(sample_locations_sorted[:,0],sample_locations_sorted[:,1])
+    plt.show
+    print("Distance of route: " + str(round(path_distance(route,cities),1)) + "m")
+    # Return the dataframe in the order the points should be visited
+    sorted_sample = sample.reindex(route)
 
 '''
 Create output
