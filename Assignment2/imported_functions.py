@@ -1,21 +1,24 @@
 import numpy as np
 from scipy.spatial import ConvexHull
 from shapely.geometry import Point
+from scipy.ndimage.interpolation import rotate
 
 def minimum_bounding_rectangle(df):
     """
-    Find the smallest bounding rectangle for a set of points.
-    Returns a set of points representing the corners of the bounding box.
-
+    Taken from: https://gis.stackexchange.com/questions/22895/finding-minimum-area-rectangle-for-given-points/22904
+    This finds the smallest rectangle which bounds a set of points, and calculates the
+    coordinates of the corners of the box.
+    
     :param df: A dataframe of coordinates stored in X and Y columns
-    :value: an nx2 matrix of coordinates
+    :value: an nx2 matrix of coordinates representing the corners of the bounding box.
     """
-    from scipy.ndimage.interpolation import rotate
     pi2 = np.pi/2.
     
+    # Convert dataframe to array
     points = np.array(df[['x', 'y']])
     
-    # get the convex hull for the points
+    # Get the convex hull for the points
+    # Convex hull = the smallest convex polygon which contains all the points. 
     hull_points = points[ConvexHull(points).vertices]
 
     # calculate edge angles
