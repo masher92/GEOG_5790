@@ -2,8 +2,8 @@
 The purpose of this program is to provide a user with a set of locations in which to conduct manual sampling
 of peat depth in order to optomise performance of a geostatistical model of peat depth over an area of interest.
 
-If the user has an existing dataset of locations where they have sampled peat depth previously, the program can
-identify locations where additional sampling would improve the utility of the dataset.  
+If the user has an existing dataset of locations where they have sampled peat depth previously, the program 
+identifies locations where additional sampling would improve the utility of the dataset.  
 
 The program is designed to ensure the sample:
 * A.) Contains the number of samples desired by the user.
@@ -12,12 +12,14 @@ The program is designed to ensure the sample:
 
 ## Motivation 
 Peatlands contain a large proportion of the global soil organic carbon pool and provide vital key ecosystem services.
-Knowledge of the depth, and subsequently volume, of peat stored in blanket peatlands is therefore of value.
-Peat depth varies over small spatial scales and capturing this varibality through both fine-scale manual sampling 
-and geophysical techniques such as remote sensing or ground penetrating radar is expensive.
+Knowledge of the depth, and subsequently volume, of peat stored in blanket peatlands is of value.
+Peat depth varies over small spatial scales and capturing this varibality through either fine-scale manual sampling 
+or geophysical techniques, such as remote sensing or ground penetrating radar, is expensive.
 An alternative approach involves modelling peat depth using variables known to influence peat depth, 
 e.g. slope and elevation, which are readily available in public datasets.
 These models can be fitted using samples of peat depth measured manually. 
+
+Linear models of peat depth based on slope and elevation are known to perform well in areas of shallower peat found on steeper slopes; however, in areas of deeper peat the factors governing peat formation are more complex and are less-well captured by a linear model. In these cases, geostatistical models which use spatial autocorrelation in the data are more accurate. 
 
 
 ## Installation/ A quickstart tutorial on how to ues it requirements, installation, configureaiton, how to use it.
