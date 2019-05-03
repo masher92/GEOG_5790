@@ -11,12 +11,13 @@ C.) Ensures that each sample point is within a specified distance range of at le
 
 ## Table of contents
 
-1. [ Motivation. ](#desc)
-2. [ Installation. ](#desc)
-3. [ How to use. ](#desc)
-4. [ License. ](#desc)
-1. [ Example Usage. ](#desc)
+1. [ Motivation. ](#motiv)
+2. [ Installation. ](#install)
+3. [ How to use. ](#use)
+4. [ License. ](#lic)
+1. [ Example Usage. ](#ex)
 
+<a name="motiv"></a>
 ## Motivation
 Peatlands contain a large proportion of the global soil organic carbon pool and provide vital key ecosystem services. Knowledge of the depth, and subsequently volume, of peat stored in blanket peatlands is of value. Peat depth varies over small spatial scales and capturing this varibality through either fine-scale manual sampling or geophysical techniques, such as remote sensing or ground penetrating radar, is expensive. An alternative approach involves modelling peat depth using variables known to influence peat depth, e.g. slope and elevation, which are readily available in public datasets. These models can be fitted using samples of peat depth measured manually.
 
@@ -26,6 +27,7 @@ The prevailing method for manual sampling of peat depth involves taking samples 
 
 It is hoped that the creation of an easy-to-use tool would encourage practitioners to adopt a sampling approach which would facilitate more accurate modelling and mapping of peat depth.
 
+<a name="install"></a>
 ## Installation
 Usage of this tool requires installation of [Anaconda.](https://www.anaconda.com/distribution/#download-section)  
 Geopandas and Shapely extension packages are required and can be installed through command line (search: "cmd") by typing:
@@ -36,7 +38,7 @@ Installation of these packages on Windows may fail, in which case it is recommen
 
 Using the installation procedure outlined above the program may still run into an error when attempting to convert the data projection using 'to_crs'. This issue has not yet been resolved.  
 
-<a name="desc"></a>
+<a name="use"></a>
 ## How to use
 The tool can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.   
 
@@ -56,8 +58,10 @@ The sampling constraints may also be edited, including:
 * The distance range within which each point must be of at least another.
 * The number of points within this range that each point should have.
 
+<a name="lic"></a>
 ## License
 This project is licensed using the MIT license - see LICENSE.txt for further details. 
 
+<a name="ex"></a>
 ## Example usage
 A test datsa set is provided in the repository, containing all the files needed to run the program.
