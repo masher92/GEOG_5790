@@ -8,6 +8,8 @@ A.) Contains the number of samples desired by the user.
 B.) Has the same proportional representation of slope and elevation categories as the wider area of interest.  
 C.) Ensures that each sample point is within a specified distance range of at least one other point.  
 
+1. [ Description. ](#desc)
+
 ## Motivation
 Peatlands contain a large proportion of the global soil organic carbon pool and provide vital key ecosystem services. Knowledge of the depth, and subsequently volume, of peat stored in blanket peatlands is of value. Peat depth varies over small spatial scales and capturing this varibality through either fine-scale manual sampling or geophysical techniques, such as remote sensing or ground penetrating radar, is expensive. An alternative approach involves modelling peat depth using variables known to influence peat depth, e.g. slope and elevation, which are readily available in public datasets. These models can be fitted using samples of peat depth measured manually.
 
@@ -27,6 +29,7 @@ Installation of these packages on Windows may fail, in which case it is recommen
 
 Using the installation procedure outlined above the program may still run into an error when attempting to convert the data projection using 'to_crs'. This issue has not yet been resolved.  
 
+<a name="desc"></a>
 ## How to use
 The tool can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.   
 
@@ -47,6 +50,7 @@ The sampling constraints may also be edited, including:
 * The number of points within this range that each point should have.
 
 ## License
-The code is open-source and licensed according to the MIT license provided in the repository parent directory.
+This project is licensed using the MIT license - see LICENSE.txt for further details. 
 
-## Example usage?
+## Example usage
+A test datsa set is provided in the repository, containing all the files needed to run the program.
