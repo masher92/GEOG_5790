@@ -41,15 +41,16 @@ Using the installation procedure outlined above the program may still run into a
 
 <a name="use"></a>
 ## How to use
-The tool can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.   
-
-Before the tool can be executed, "myconfig.py" must be edited to provide filepaths to the following data:
+Before the tool can be executed, "myconfig.py" must be edited in a text editor to provide filepaths to the following data:
 * A shapefile containing a polygon outline of an area of interest. 
 * Raster slope dataset (TIFF) (NB: this can cover a wider area than the AOI, it will be trimmed).
 * Raster elevation dataset (TIFF) (NB: as above.)
 * An existing shapefile of peat depth sample points, if it exists.
 The user can also specify preferences to the sampling conditions.
 
+The "TiffToASCii.py" tool must be executed first as it uses the Arcpy module to convert a tiff to a ascii file. Arcpy is only available in Python 2 and so must be run seperately to the rest. This will save an ascii file in the same location and with the same name as the  TIFF files they are based on, but with an edited filetype.  
+
+The main tool can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.  
 
 Filepaths must also be provided for saving the outputs of the tool, which include:
 * A dataframe containing the identified sampling locations. 
