@@ -63,7 +63,7 @@ humberstone_df['Slope/Elevation'] = ['Slope:' + x + ', Elevation:' + y for x, y 
 
 #humberstone_df.to_csv("E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/Data/Dales_df_bng.csv")
 #humberstone_df = pd.read_csv("E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/Data/Dales_df_bng.csv")
-
+dd
 '''
 Create sample from scratch
 '''
