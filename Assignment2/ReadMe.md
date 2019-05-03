@@ -40,7 +40,7 @@ Using the installation procedure outlined above the program may still run into a
 
 <a name="use"></a>
 ## How to use
-<b> 1. Edit myconfig.py file </b>   
+<b><u> 1. Edit myconfig.py file </u></b>   
 Before the tool can be executed, "myconfig.py" must be edited in a text editor to provide filepaths to the following data:
 * A shapefile containing a polygon outline of an area of interest. 
 * Raster slope dataset (TIFF) (NB: this can cover a wider area than the AOI, it will be trimmed).
@@ -57,10 +57,10 @@ The sampling constraints may also be edited, including:
 * The distance range within which each point must be of at least another.
 * The number of points within this range that each point should have.
 
-<b> 2. Run "TiffToASCii.py" </b>  
+<b><u> 2. Run "TiffToASCii.py" </u></b>  
 This tool must be executed first as it uses the Arcpy module to convert a tiff to a ascii file. Arcpy is only available in Python 2 and so must be run seperately to the rest. This will save an ascii file in the same location and with the same name as the  TIFF files they are based on, but with an edited filetype.  
 
-<b> 3. Run "RunProgram.py" which reads in the TIFF file and identifies the sampling locations </b>  
+<b><u> 3. Run "RunProgram.py" which reads in the TIFF file and identifies the sampling locations </u></b>  
 The main tool can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.  
 
 <a name="ex"></a>
