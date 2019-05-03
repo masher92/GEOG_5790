@@ -81,5 +81,8 @@ Creating 900 sample points, with each point having at least 1 point within 0.001
 ![Test Image 6](Capture.PNG)
 
 <a name="lic"></a>
+
+<b> NB: </b> Example timeframes provided here and elsewhere in the project are derived from running the program on a computer with the following specifications: 16.0 GB RAM, x64 system.
+
 ## License
 This project is licensed using the MIT license - see LICENSE.txt for further details. 
