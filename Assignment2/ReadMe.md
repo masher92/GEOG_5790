@@ -5,9 +5,9 @@ If the user has an existing dataset of locations where they have sampled peat de
 
 The program is designed to ensure the sample:
 
-A.) Contains the number of samples desired by the user.
-B.) Has the same proportional representation of slope and elevation categories as the wider area if interest.
-C.) Ensures that each sample point is within a specified distance range of at least one other point.
+A.) Contains the number of samples desired by the user.  
+B.) Has the same proportional representation of slope and elevation categories as the wider area if interest.  
+C.) Ensures that each sample point is within a specified distance range of at least one other point.  
 
 ## Motivation
 Peatlands contain a large proportion of the global soil organic carbon pool and provide vital key ecosystem services. Knowledge of the depth, and subsequently volume, of peat stored in blanket peatlands is of value. Peat depth varies over small spatial scales and capturing this varibality through either fine-scale manual sampling or geophysical techniques, such as remote sensing or ground penetrating radar, is expensive. An alternative approach involves modelling peat depth using variables known to influence peat depth, e.g. slope and elevation, which are readily available in public datasets. These models can be fitted using samples of peat depth measured manually.
@@ -19,18 +19,17 @@ The prevailing method for manual sampling of peat depth involves taking samples 
 It is hoped that the creation of an easy-to-use tool would encourage practitioners to adopt a sampling approach which would facilitate more accurate modelling and mapping of peat depth.
 
 ## Installation
-Usage of this tool requires installation of [Anaconda.] (https://www.anaconda.com/distribution/#download-section)
+Usage of this tool requires installation of [Anaconda.](https://www.anaconda.com/distribution/#download-section)
 Geopandas and Shapely extension packages are required and can be installed through command line (search: "cmd") by typing:
 Pip install geopandas; pip install shapely.
 Installation of these packages on Windows may fail, in which case it is recommended to:
-* Dowload Shapely from [here] (https://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely) according to your PC specifications and run the cmd in the folder it downloads to, typing: pip install Shapely-1.6.4.post1-cp37-cp37m-win_amd64.whl
+* Dowload Shapely from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely) according to your PC specifications and run the cmd in the folder it downloads to, typing: pip install Shapely-1.6.4.post1-cp37-cp37m-win_amd64.whl
 * Type "conda install -c conda-forge geopandas" into the cmd for geopandas.
 * CRS???
 
-##How to use
-The tool can be executed using "RunProgram.py" either using the command line or opening the Python IDLE or Spyder and pressing F5.
+## How to use
+The tool can be executed using "RunProgram.py" either using the command line or opening the Python IDLE or Spyder and pressing F5.  
 Before the tool can be executed, "myconfig.py" must be edited by the user to give filepaths to the following data:
-
 * A tiff file of slope data.
 * A tiff file of elevation data.
 * A shapefile containing a polygon outline of an area of interest. The user can also specify preferences to the sampling conditions.
