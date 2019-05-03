@@ -39,13 +39,10 @@ Installation of these packages on Windows may fail, in which case it is recommen
 ## How to use
 The tool can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.
 
-The project supplies 4 folders:
-* functions.py : contains definitions of functions used by the main processing script.
-* imported_functions.py : contains definitions of functions used by the main processing script.
-The program can be executed 
-The program requires the user to 
+Before the tool can be executed, "myconfig.py" must be edited by the user to give data filepaths and to set sampling preferences. 
+The user is expected to provide A raster 
 
-Myconfig.py 
+
 
 ## License
 
