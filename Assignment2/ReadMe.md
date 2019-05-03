@@ -14,8 +14,8 @@ C.) Ensures that each sample point is within a specified distance range of at le
 1. [ Motivation. ](#motiv)
 2. [ Installation. ](#install)
 3. [ How to use. ](#use)
-4. [ License. ](#lic)
-1. [ Example Usage. ](#ex)
+4. [ Example Usage. ](#ex)
+5. [ License. ](#lic)
 
 <a name="motiv"></a>
 ## Motivation
@@ -44,10 +44,12 @@ Using the installation procedure outlined above the program may still run into a
 The tool can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.   
 
 Before the tool can be executed, "myconfig.py" must be edited to provide filepaths to the following data:
-* A tiff file of slope data.
-* A tiff file of elevation data.
-* A shapefile containing a polygon outline of an area of interest. The user can also specify preferences to the sampling conditions.
-If the user has already got a dataset of peat depth samples, then a filepath should also be supplied to this/
+* A shapefile containing a polygon outline of an area of interest. 
+* Raster slope dataset (TIFF) (NB: this can cover a wider area than the AOI, it will be trimmed).
+* Raster elevation dataset (TIFF) (NB: as above.)
+* An existing shapefile of peat depth sample points, if it exists.
+The user can also specify preferences to the sampling conditions.
+
 
 Filepaths must also be provided for saving the outputs of the tool, which include:
 * A dataframe containing the identified sampling locations. 
@@ -59,15 +61,16 @@ The sampling constraints may also be edited, including:
 * The distance range within which each point must be of at least another.
 * The number of points within this range that each point should have.
 
-<a name="lic"></a>
-## License
-This project is licensed using the MIT license - see LICENSE.txt for further details. 
-
 <a name="ex"></a>
 ## Example usage
-A test datsa set is provided in the repository, containing all the files needed to run the program.
-
+A test dataset is provided in the repository, containing all the files needed to run the program, including:
+* AOI - shapefile of Area of Interest west of Pately Bridge in the Yorkshire Dales.
+* ExistingPeatDepthSamples - Shapefile containing locations of an existing peat depth sample dataset.
+* Dales_elevation_clip.tiff - a Raster dataset of elevation values for a wider region of the Yorkshire Dales.
+* Dales_slope_clip.tiff - a Raster dataset of slope values for a wider region of the Yorkshire Dales.
 
 ![Test Image 6](Capture.PNG)
 
-![Test Image 6](points_map_new.html)
+<a name="lic"></a>
+## License
+This project is licensed using the MIT license - see LICENSE.txt for further details. 
