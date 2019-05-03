@@ -1,5 +1,3 @@
-# Mention file paths = forward sash not back
-
 '''
 Reading in the data.
 '''
@@ -41,4 +39,5 @@ find_optimum_route = 'Yes'
 Location to save output
 '''
 output_fp = "E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/Data/output.csv"
+output_map_fp = "E:/Msc/Advanced-Programming/points_map_new.html"
 

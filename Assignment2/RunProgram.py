@@ -34,7 +34,7 @@ elevation_df = funcs.read_ascii(elevation_asc_fp, 'elevation')
 humberstone_df = pd.concat([slope_df['x'], slope_df['y'], slope_df['slope'], elevation_df['elevation']], axis=1, keys=['x', 'y', 'slope', 'elevation']).reset_index()
 humberstone_df = humberstone_df.dropna() 
 
-# Set CRS on the basis of user's projection definition.
+# Set CRS definition to apply to geodataframe on the basis of user's projection definition.
 if projection == 'British National Grid':
     input_crs = {'init': 'epsg:27700'}
 elif projection == 'WGS84/Decimal Degrees':
@@ -62,7 +62,7 @@ humberstone_df = funcs.create_binned_variable(humberstone_df, 'elevation', 'Elev
 humberstone_df['Slope/Elevation'] = ['Slope:' + x + ', Elevation:' + y for x, y in zip(humberstone_df['Slope_cuts'], humberstone_df['Elevation_cuts'])]
 
 #humberstone_df.to_csv("E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/Data/Dales_df_bng.csv")
-humberstone_df = pd.read_csv("E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/Data/Dales_df_bng.csv")
+#humberstone_df = pd.read_csv("E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/Data/Dales_df_bng.csv")
 
 '''
 Create sample from scratch
@@ -75,7 +75,7 @@ sample_constraints = {'n_samples' :n_samples, 'n_close_points' : n_close_points,
 # B.) With the same proportions of each slope and elevation categories as the AOI.
 # C.) Where each point has at least n_close_points within min_dist to max_dist of it.
 # N versions of the sample are created and the one which covers the smallest area is chosen.
-sample = funcs.run_sampling (humberstone_df, 10, sample_constraints)
+sample = funcs.run_sampling (humberstone_df, 1, sample_constraints)
 
 # Test whether sample still meets the required distribution.
 variable_distribution = pd.DataFrame({'original_props' : round(humberstone_df['Slope/Elevation'].value_counts()/len(humberstone_df) * 100,3).reset_index(drop = True),
@@ -110,9 +110,4 @@ Create output
 sample[['x','y']].to_csv(output_fp)
 
 # Save output map - not plotting poitns and polygons properly?
-funcs.interactive_sample_plot(sample, aoi_fp)
-
-
-
-
-
+funcs.interactive_sample_plot(sample, aoi_fp, output_map_fp)
