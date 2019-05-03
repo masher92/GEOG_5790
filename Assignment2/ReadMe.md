@@ -30,18 +30,18 @@ Using the installation procedure outlined above the program may still run into a
 ## How to use
 The tool can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.   
 
-Before the tool can be executed, "myconfig.py" must be edited by the user to give filepaths to the following data:
+Before the tool can be executed, "myconfig.py" must be edited to provide filepaths to the following data:
 * A tiff file of slope data.
 * A tiff file of elevation data.
 * A shapefile containing a polygon outline of an area of interest. The user can also specify preferences to the sampling conditions.
 If the user has already got a dataset of peat depth samples, then a filepath should also be supplied to this/
 
-The user must also provide filepaths for saving the outputs of the tool, which include:
+Filepaths must also be provided for saving the outputs of the tool, which include:
 * A dataframe containing the identified sampling locations. 
   * The user can choose for this dataframe to be sorted to represent the order in which the sample points should be visited so that the distance travelled between points is minimised.
 * An HTML webpage containing an interactive map displaying the locations of the sample points inside the area of interest. 
 
-The user may also alter the sampling constraints, including:
+The sampling constraints may also be edited, including:
 * The number of samples to make.
 * The distance range within which each point must be of at least another.
 * The number of points within this range that each point should have.
