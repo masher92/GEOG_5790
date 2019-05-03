@@ -24,7 +24,8 @@ Pip install geopandas; pip install shapely.
 Installation of these packages on Windows may fail, in which case it is recommended to:  
 * Dowload Shapely from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely) according to your PC specifications and run the cmd in the folder it downloads to, typing: pip install Shapely-1.6.4.post1-cp37-cp37m-win_amd64.whl
 * Type "conda install -c conda-forge geopandas" into the cmd for geopandas.
-* The program is also required to convert the projection of the data provided. Following the installation procedure followed above currently this runs into an error when attempting to convert the projection with 'to_crs'. This has not yet been resolved.  
+
+Using the installation procedure outlined above the program may still run into an error when attempting to convert the data projection using 'to_crs'. This issue has not yet been resolved.  
 
 ## How to use
 The tool can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.   
