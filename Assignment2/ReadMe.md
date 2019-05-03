@@ -1,4 +1,4 @@
-Sampling location generator
+* Sampling location generator
 The purpose of this program is to provide a user with a set of locations in which to conduct manual sampling of peat depth in order to optomise performance of a geostatistical model of peat depth over an area of interest.
 
 If the user has an existing dataset of locations where they have sampled peat depth previously, the program identifies locations where additional sampling would improve the utility of the dataset.
@@ -17,7 +17,7 @@ The prevailing method for manual sampling of peat depth involves taking samples 
 
 It is hoped that the creation of an easy-to-use tool would encourage practitioners to adopt a sampling approach which would facilitate more accurate modelling and mapping of peat depth.
 
-Installation
+** Installation
 Usage of this tool requires installation of Anaconda.
 Geopandas and Shapely extension packages are required and can be installed through command line (search: "cmd") by typing:
 
@@ -33,8 +33,10 @@ The tool can be executed using "RunProgram.py" either using the command line or 
 
 Before the tool can be executed, "myconfig.py" must be edited by the user to give filepaths to the following data:
 
-A tiff file of slope data.
-A tiff file of elevation data.
-A shapefile containing a polygon outline of an area of interest. The user can also specify preferences to the sampling conditions.
-License
-Example usage?
+* A tiff file of slope data.
+* A tiff file of elevation data.
+* A shapefile containing a polygon outline of an area of interest. The user can also specify preferences to the sampling conditions.
+
+** License
+
+** Example usage?
