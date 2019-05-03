@@ -2,17 +2,17 @@
 Reading in the data.
 '''
 # Filepath to file containing a slope raster file.
-slope_asc_fp = "E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/Data/humberstone_slope.asc"
-# Filepath to file contaning...
-elevation_asc_fp = "E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/Data/humberstone_elevation.asc"
-# Filepath to file contaning...
-aoi_fp = 'E:/Msc/Dissertation/Code/Data/Input/Site_AOIs/Humberstone_AOI.shp'
+slope_tif_fp = "E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/TestData/Dales_slope_clip.tif"
+# Filepath to file contaning an elevation rasterfile.
+elevation_tif_fp = "E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/TestData/Dales_elevation_tif.asc"
+# Filepath to file contaning a shapefile of the outline of the area of interest.
+aoi_fp = 'E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/TestData/AOI/Humberstone_AOI.shp'
 
 # Projection system which slope and elevation data is stored:
 # Enter: 'British National Grid' or 'WGS84/Decimal Degrees'.
 # If neither, insert code from: https://spatialreference.org/ref/epsg/
 # in format '2004'
-projection = 'WGS84/Decimal Degrees'
+projection = 'British National Grid'
 
 '''
 Creating a set of locations to sample peat depths.
@@ -21,7 +21,7 @@ Creating a set of locations to sample peat depths.
 # Enter: 'Yes' or 'No'
 existing_samples = 'Yes'
 # If 'Yes' to above then enter filepath, if not then enter 'None'
-peat_depth_samples_fp = 'E:/Msc/Dissertation/Code/Data/Input/PeatDepth/Humberstone_Peat_depth_points.shp'
+peat_depth_samples_fp = 'E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/TestData/ExistingPeatDepthSamples/Humberstone_Peat_depth_points.shp'
 # The number of samples you are willing to make.
 n_samples = 900
 # The desired minimum and maximum distance between points in metres
@@ -40,4 +40,9 @@ Location to save output
 '''
 output_fp = "E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/Data/output.csv"
 output_map_fp = "E:/Msc/Advanced-Programming/points_map_new.html"
+
+
+
+
+
 
