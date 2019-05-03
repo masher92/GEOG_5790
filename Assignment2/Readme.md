@@ -26,23 +26,17 @@ The prevailing method for manual sampling of peat depth involves taking samples 
 It is hoped that the creation of an easy-to-use tool would encourage practitioners to adopt a sampling approach which would facilitate more accurate modelling and mapping of peat depth. 
 
 ## Installation/ A quickstart tutorial on how to ues it requirements, installation, configureaiton, how to use it.
- 
+Usage of this tool requires installation of [Anaconda.](https://www.anaconda.com/distribution/#windows).
+It also requires installation of "geopandas" and "shapely" packages, not provided as built_in functions.
+These may be installed through the command line (search: cmd) by typing:
+* Pip install geopandas; pip install shapely
+Installation of these packages on Windows may fail, in which case it is recommended to:
+* Dowload Shapely from [here.](https://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely) according to your PC specifications. Run the cmd in the folder it downloads to, typing: pip install Shapely-1.6.4.post1-cp37-cp37m-win_amd64.whl
+* Type "conda install -c conda-forge geopandas" into the cmd for geopandas.
+* CRS???
 
 ## License
 
 ## Example usage?
 
-This project contains tools to model the impact of a bomb exploding on the buildings in its vicinity using Arcmap.  
-The data it is based on can be found in Data/Practical1-4-Data.zip.  
 
-These tools include:  
-* An ArcMap toolbox which contains a model built with Arcmap's ModelBuilder functionality, and the same model in the format of a python script.
-* A copy of the python script found in the toolbox (NB: this script is only executable from within the toolbox, it does not function as a stand alone script)
-	
-The model takes as inputs:  	
-* A shapefile containing the location of an explosion.
-* A shapefile containing the outlines and locations of the surrounding buildings.
-* A distance at which the impact of the explosion is felt.
-
-It returns as outputs:  
-* A shapefile containing the outlines of the buildings impacted by the explosion.
