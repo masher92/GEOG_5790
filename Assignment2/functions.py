@@ -8,6 +8,7 @@ import math
 from shapely.geometry import Point, Polygon
 from sklearn.metrics.pairwise import euclidean_distances
 import os
+import folium
 
 # Import user defined functions
 os.chdir("E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/")
@@ -134,7 +135,6 @@ def find_dists (sample):
     Finds distance between each point in a dataframe and another.
     : param sample: dataframe containing x and y coordinates.
     : return mat: A matrix containing pairwise distances.
-
     """
     mat = []
     for i,j in zip(sample['x'],sample['y']):
@@ -170,7 +170,7 @@ def convertCoords(row, inProj, outProj):
     return pd.Series({'newLong':x2,'newLat':y2})
 
 
-def find_near_neighbours (df, min_dist, max_dist, n_close_points ):
+def find_near_neighbours (df, min_dist, max_dist, n_close_points, print_preference):
     """
     Adds a column to dataframe containing rows of X, Y coordinates specifying the number of 
     other points in the dataframe which are within a specified distance of each x, y coordinate. 
@@ -185,7 +185,9 @@ def find_near_neighbours (df, min_dist, max_dist, n_close_points ):
     df['close_points'] = df.apply(lambda row:(( dists[row.name]>= min_dist) & ( dists[row.name] < max_dist)).sum(), axis = 1)   
     # Calculate the number of rows in the df without the minimum number of close points.
     close_points = df.loc[df.close_points < n_close_points, 'close_points'].count()
-    print(f"Points without {n_close_points} neighbours within {min_dist}: {max_dist}m = {close_points}.")
+    # Option to print a statement counting the number of points still without the necessary number of neighbours.
+    if print_preference == 'Update Progress':
+        print(f"Points without {n_close_points} neighbours within {min_dist}: {max_dist}m = {close_points}.")
     return df
 
 
@@ -199,7 +201,6 @@ def resample_far_points (sample_df, original_df, n_close_points):
     : param original_df: Dataframe from which the sample was drawn.
     : param n_close_points: Number of points required by user to be 'close' to each point in the sample. 
     : return new_sample_df:  Dataframe containing new sample of same size as input sample_df 
-
     """
     # Keep only those points which have > n_close_points close to them.
     new_sample_df = sample_df.loc[sample_df['close_points'] > n_close_points]
@@ -228,7 +229,6 @@ def resample_far_points2 (sample_df, original_df, n_close_points):
     : param original_df: Dataframe from which the sample was drawn.
     : param n_close_points: Number of points required by user to be 'close' to each point in the sample. 
     : return new_sample_df:  Dataframe containing new sample of same size as input sample_df 
-
     """
     # Keep only those points which have > n_close_points close to them.
     new_sample_df = sample_df.loc[((sample_df['close_points'] >= n_close_points) & (sample_df['origin'] == 'new_point'))|(sample_df['origin'] == 'original_point')]
@@ -267,7 +267,6 @@ def resample_far_points22 (sample_df, original_df, n_close_points):
     : param original_df: Dataframe from which the sample was drawn.
     : param n_close_points: Number of points required by user to be 'close' to each point in the sample. 
     : return new_sample_df:  Dataframe containing new sample of same size as input sample_df 
-
     """
     # Keep only those points which have > n_close_points close to them.
     new_sample_df = sample_df.loc[((sample_df['close_points'] >= n_close_points) & (sample_df['origin'] == 'new_point'))|(sample_df['origin'] == 'original_point')]
@@ -314,31 +313,28 @@ def create_df_sample (df, sample_constraints):
     # Take a sample from the dataframe that matches the proportional split between slope and elevation in the whole AOI
     sample = df.groupby(['Elevation_cuts', 'Slope_cuts'], as_index=False).apply(lambda x: x.sample (frac = sample_constraints['n_samples']/len(df))).reset_index(drop=True)
     # For each point in the sample, find the number of neighbours it has within a range between min_dist and max_dist
-    sample = find_near_neighbours(sample, sample_constraints['min_dist'], sample_constraints['max_dist'], sample_constraints['n_close_points'])
+    sample = find_near_neighbours(sample, sample_constraints['min_dist'], sample_constraints['max_dist'], sample_constraints['n_close_points'], 'No print statements')
     # If 0 rows have less than the requirements for n_close_points then sampling is done.
     # Else, the dataset is resampled until this condition is met.
     done = 'Not Done'
+    counter = 0
     if sample.loc[sample.close_points <= sample_constraints['n_close_points'], 'close_points'].count() == 0:
-        print("DONE")
+        print(f"Sampling complete after 0 resamples within {round(((time.time()-start)/60),2)} minutes.")
     else:     
         while done != 'Done':
+            # Create a coutner to record how many iterations were needed.
+            counter = counter + 1
             # Resample the dataset, removing any points without sufficient near neighbours
             # and replacing them with a point with the same slope/elevation profile from the original dataset .
             # Recount the near neighbours to each point.
             sample = resample_far_points (sample, df, sample_constraints['n_close_points'])
-            sample = find_near_neighbours (sample, sample_constraints['min_dist'], sample_constraints['max_dist'], sample_constraints['n_close_points'])
+            sample = find_near_neighbours (sample, sample_constraints['min_dist'], sample_constraints['max_dist'], sample_constraints['n_close_points'], 'No print statements')
             # If 0 rows have less than the requirements for n_close_points then sampling is done.
             # Else, the dataset is returned for resampling.
             if sample.loc[sample.close_points <= sample_constraints['n_close_points'], 'close_points'].count()== 0:
-                print("Done")
+                end = time.time()
+                print(f"Sampling complete after {counter} resamples within {round(((end-start)/60),2)} minutes.")
                 done = 'Done'
-            else:
-                print ("Resampling")
-       
-        end = time.time()
-        print("time elapsed:" ,round(((end-start)/60),2) , "minutes" )
-        
-    # Check if sample fits the distribution
     return sample
 
 
@@ -350,7 +346,7 @@ def find_area_of_rectangle (coordinates):
     """
     df = pd.DataFrame({'x': coordinates[:,0], 'y': coordinates[:,1]})
     # Find the distance between the last coordinate and all of the rest. 
-    dists = euclidean_distances(bb_df.iloc[[3]][['x', 'y']], bb_df.iloc[:3][['x', 'y']])[0].tolist()
+    dists = euclidean_distances(df.iloc[[3]][['x', 'y']], df.iloc[:3][['x', 'y']])[0].tolist()
     # Keep only the two smallest distances, corresponding to the length and height of the square.
     dists.remove(max(dists))
     # Find the area as length * height.
@@ -380,19 +376,24 @@ def run_sampling (df, n, sample_constraints):
     # At the end return the most compact sample found over the n iterations.
     counter = 0
     while counter <n:
+        print ("Sample: " + str(counter))
         sample = funcs.create_df_sample(df, sample_constraints)
         sample_bb = minimum_bounding_rectangle (sample)
         bb_area = find_area_of_rectangle (sample_bb)
         if bb_area < best_bb_area:
-            print ("Better")
+            print(f"Sample covers the smallest area so far ({str(round(bb_area/1000000,2))} km^2).")
             best_sample = sample
             best_bb_area = bb_area
         else:
-            print ("Not better")
-            print(bb_area)
-        print ('Sampling iteration: ' + str(counter) + ': area = ' + str(bb_area))
+            print(f"Sample covers a bigger area than previous samples ({str(round(bb_area/1000000,2))} km^2).")
+        print ("--------------------------------------------")
+        #print ('At sampling iteration ' + str(counter) + ' the sampling area is ' + str(round(bb_area/1000000,2)) + 'km^2')
         counter = counter +1
+        
+    print(f"Sampling complete after {n} iterations, with samples covering {str(round(best_bb_area/1000000,2))} km^2.")
     return best_sample
+
+
 
 def interactive_sample_plot (sample, aoi_fp, output_map_fp):
     '''
@@ -403,28 +404,34 @@ def interactive_sample_plot (sample, aoi_fp, output_map_fp):
     : param output_map_fp: Filepath to the location where the map should be stored. 
     : return NULL
     '''
+    # Convert the CRS of the sample dataframe (by first converting it to a geodataframe)  
+    geometry = [Point(xy) for xy in zip(sample['x'], sample['y'])]
+    gdf = GeoDataFrame(sample, crs={'init': 'epsg:27700'} , geometry=geometry)
+    gdf = gdf.to_crs({'init': 'epsg:4326'})
+    reprojected_sample = pd.DataFrame({'x': gdf.centroid.map(lambda p: p.x), 'y':gdf.centroid.map(lambda p: p.y)})
+    
+    # Create a Map instance
+    # Set the map centred on a locaiton derived as the midpoint of the samples
+    m = folium.Map(location=[sum(reprojected_sample['y'])/len(reprojected_sample['y']), sum(reprojected_sample['x'])/len(reprojected_sample['x'])], 
+                             tiles = 'cartodbpositron',zoom_start=14, control_scale=True)
+    
     # Read in the aoi and reproject it to WGS84 (Folium only plots in WGS84)
-    aoi = read_file(aoi_fp).to_crs(epsg=4326)
+    aoi= read_file(aoi_fp).to_crs(epsg=4326)
     # Create a Geo-id (unique identifier for each row) which Folium requires.
     aoi['geoid'] = aoi.index.astype(str)
     # Select data needed
-    aoi = aoi[['geometry']]
-    # Convert the file as geojson
-    jsontxt = aoi.to_json()
+    aoi = aoi[['geoid',  'geometry']]
+    # Plot data
+    folium.Choropleth(
+            geo_data=aoi, fill_opacity = 0.1, fill_color='YlGn', ).add_to(m)
+    
 
-   # Reproject into decimal degrees
-    reprojected_df =  slope_df.apply(convertCoords, inProj = input_crs, outProj = {'init': 'epsg:27700'}, axis=1)
-    # Convert locations into a list
-    locationlist = reprojected_df.values.tolist()
-    # Set up a basemap
-    map = folium.Map(location = [54.041758226358, -1.8268090425760997,], zoom_start = 14)
-    folium.GeoJson(aoi,style_function=lambda x :{'fillcolor':'#00000000'}).add_to(map)
-    # Add data points
-    for point in range(0, len(locationlist)):
-      # folium.GeoJson(jsontxt,name='geojson', fillColor= '#00000000').add_to(map)
-       folium.Circle(locationlist[point],radius= 4, fill = True, color = 'crimson' ).add_to(map)
-       # folium.Marker(locationlist[point], popup='<i>Mt. Hood Meadows</i>', tooltip=tooltip ).add_to(map)
-        #folium.Marker(locationlist[point] ).add_to(map)
+
+    # Add the sample points to the map as circles.
+    # add a popup which specifies their location
+    for i in range(0,len(reprojected_sample)):
+        folium.CircleMarker([reprojected_sample['y'].iloc[i], reprojected_sample['x'].iloc[i]], radius = 4,color="#007849",fill_color="#007849",
+                            popup=f"Latitude: {str(round(reprojected_sample['y'].iloc[i],5 ))}, Longitude: {str(round(reprojected_sample['x'].iloc[i],5 ))}.").add_to(m)
+        
     # Save map
-    map.save(output_map_fp)
-
+    m.save(output_map_fp)
