@@ -32,6 +32,7 @@ It is hoped that the creation of an easy-to-use tool would encourage practitione
 Usage of this tool requires installation of [Anaconda.](https://www.anaconda.com/distribution/#download-section)  
 Geopandas and Shapely extension packages are required and can be installed through command line (search: "cmd") by typing:
 `Pip install geopandas` and `pip install shapely`.  
+
 Installation of these packages on Windows may fail, in which case it is recommended to:  
 * Dowload Shapely from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely) according to your PC specifications and run the cmd in the folder it downloads to, typing: `pip install Shapely-1.6.4.post1-cp37-cp37m-win_amd64.whl`
 * Type `conda install -c conda-forge geopandas` into the cmd for geopandas.
@@ -40,8 +41,8 @@ Using the installation procedure outlined above the program may still run into a
 
 <a name="use"></a>
 ## How to use
-<b><ins> 1. Edit myconfig.py file </ins></b>   
-Before the tool can be executed, "myconfig.py" must be edited in a text editor to provide filepaths to the following data:
+<b><ins> 1. Edit "myconfig.py" file </ins></b>   
+Before the tool can be executed the config file must be edited in a text editor to provide filepaths to the following data:
 * A shapefile containing a polygon outline of an area of interest. 
 * Raster slope dataset (TIFF) (NB: this can cover a wider area than the AOI, it will be trimmed).
 * Raster elevation dataset (TIFF) (NB: as above.)
