@@ -37,10 +37,10 @@ If the user has already got a dataset of peat depth samples, then a filepath sho
 
 The user must also provide filepaths for saving the outputs of the tool, which include:
 * A dataframe containing the identified sampling locations. 
-  * If the user wishes the order of this dataframe will correspond to the order in which the sample points should be visited so that the distance travelled between points is minimised.
+  * The user can choose for this dataframe to be sorted to represent the order in which the sample points should be visited so that the distance travelled between points is minimised.
 * An HTML webpage containing an interactive map displaying the locations of the sample points inside the area of interest. 
 
-The config file also allows the user to make alterations to the sampling constraints, including:
+The user may also alter the sampling constraints, including:
 * The number of samples to make.
 * The distance range within which each point must be of at least another.
 * The number of points within this range that each point should have.
