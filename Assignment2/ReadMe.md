@@ -1,4 +1,11 @@
 # Sampling location generator
+
+1. [ Motivation. ](#desc)
+2. [ Installation. ](#desc)
+3. [ How to use. ](#desc)
+4. [ License. ](#desc)
+1. [ Example Usage. ](#desc)
+
 The purpose of this program is to provide a user with a set of locations in which to conduct manual sampling of peat depth in order to optomise performance of a geostatistical model of peat depth over an area of interest.
 
 If the user has an existing dataset of locations where they have sampled peat depth previously, the program identifies locations where additional sampling would improve the utility of the dataset.
@@ -8,7 +15,6 @@ A.) Contains the number of samples desired by the user.
 B.) Has the same proportional representation of slope and elevation categories as the wider area of interest.  
 C.) Ensures that each sample point is within a specified distance range of at least one other point.  
 
-1. [ Description. ](#desc)
 
 ## Motivation
 Peatlands contain a large proportion of the global soil organic carbon pool and provide vital key ecosystem services. Knowledge of the depth, and subsequently volume, of peat stored in blanket peatlands is of value. Peat depth varies over small spatial scales and capturing this varibality through either fine-scale manual sampling or geophysical techniques, such as remote sensing or ground penetrating radar, is expensive. An alternative approach involves modelling peat depth using variables known to influence peat depth, e.g. slope and elevation, which are readily available in public datasets. These models can be fitted using samples of peat depth measured manually.
