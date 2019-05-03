@@ -47,5 +47,6 @@ The sampling constraints may also be edited, including:
 * The number of points within this range that each point should have.
 
 ## License
+The code is open-source and licensed according to the MIT license provided in the repository parent directory.
 
 ## Example usage?
