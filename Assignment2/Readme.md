@@ -26,7 +26,7 @@ The prevailing method for manual sampling of peat depth involves taking samples 
 It is hoped that the creation of an easy-to-use tool would encourage practitioners to adopt a sampling approach which would facilitate more accurate modelling and mapping of peat depth. 
 
 ## Installation
-Usage of this tool requires installation of [Anaconda.](https://www.anaconda.com/distribution/#windows)
+Usage of this tool requires installation of [Anaconda.](https://www.anaconda.com/distribution/#windows)  
 Geopandas and Shapely extension packages are required and can be installed through command line (search: "cmd") by typing:   
 * Pip install geopandas; pip install shapely  
 Installation of these packages on Windows may fail, in which case it is recommended to:  
