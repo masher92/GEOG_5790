@@ -1,11 +1,5 @@
 # Sampling location generator
 
-1. [ Motivation. ](#desc)
-2. [ Installation. ](#desc)
-3. [ How to use. ](#desc)
-4. [ License. ](#desc)
-1. [ Example Usage. ](#desc)
-
 The purpose of this program is to provide a user with a set of locations in which to conduct manual sampling of peat depth in order to optomise performance of a geostatistical model of peat depth over an area of interest.
 
 If the user has an existing dataset of locations where they have sampled peat depth previously, the program identifies locations where additional sampling would improve the utility of the dataset.
@@ -14,6 +8,12 @@ The program is designed to ensure the sample:
 A.) Contains the number of samples desired by the user.  
 B.) Has the same proportional representation of slope and elevation categories as the wider area of interest.  
 C.) Ensures that each sample point is within a specified distance range of at least one other point.  
+
+1. [ Motivation. ](#desc)
+2. [ Installation. ](#desc)
+3. [ How to use. ](#desc)
+4. [ License. ](#desc)
+1. [ Example Usage. ](#desc)
 
 
 ## Motivation
