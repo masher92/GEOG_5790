@@ -3,7 +3,7 @@ The purpose of this program is to provide a user with a set of locations in whic
 
 If the user has an existing dataset of locations where they have sampled peat depth previously, the program identifies locations where additional sampling would improve the utility of the dataset.
 
-The program is designed to ensure the sample:
+The program is designed to ensure the sample:  
 A.) Contains the number of samples desired by the user.  
 B.) Has the same proportional representation of slope and elevation categories as the wider area if interest.  
 C.) Ensures that each sample point is within a specified distance range of at least one other point.  
