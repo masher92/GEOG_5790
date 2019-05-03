@@ -66,8 +66,16 @@ The sampling constraints may also be edited, including:
 A test dataset is provided in the repository, containing all the files needed to run the program, including:
 * AOI - shapefile of Area of Interest west of Pately Bridge in the Yorkshire Dales.
 * ExistingPeatDepthSamples - Shapefile containing locations of an existing peat depth sample dataset.
-* Dales_elevation_clip.tiff - a Raster dataset of elevation values for a wider region of the Yorkshire Dales.
-* Dales_slope_clip.tiff - a Raster dataset of slope values for a wider region of the Yorkshire Dales.
+* Dales_elevation_clip.tiff - a Raster dataset of elevation values for a wider region of the Yorkshire Dales, 5m resolution.
+* Dales_slope_clip.tiff - a Raster dataset of slope values for a wider region of the Yorkshire Dales, 5m resolution.
+
+The following sampling constraints were used:
+* N_samples =
+* Max_dist = 
+* Min_fist = 
+* N_close_points = 
+
+The program took X minutes to create this sample:
 
 ![Test Image 6](Capture.PNG)
 
