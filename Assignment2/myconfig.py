@@ -4,7 +4,7 @@ Reading in the data.
 # Filepath to file containing a slope raster file.
 slope_tif_fp = "E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/TestData/Dales_slope_clip.tif"
 # Filepath to file contaning an elevation rasterfile.
-elevation_tif_fp = "E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/TestData/Dales_elevation_tif.asc"
+elevation_tif_fp = "E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/TestData/Dales_elevation_clip.tif"
 # Filepath to file contaning a shapefile of the outline of the area of interest.
 aoi_fp = 'E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/TestData/AOI/Humberstone_AOI.shp'
 
