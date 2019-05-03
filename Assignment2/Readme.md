@@ -7,7 +7,7 @@ identifies locations where additional sampling would improve the utility of the 
 
 The program is designed to ensure the sample:
 * A.) Contains the number of samples desired by the user.
-* B.) Has the same proportional representation of slope and elevation categories as the wider AOI.
+* B.) Has the same proportional representation of slope and elevation categories as the wider area if interest.
 * C.) Ensures that each sample point is within a specified distance range of at least one other point.
 
 ## Motivation 
@@ -39,9 +39,11 @@ Installation of these packages on Windows may fail, in which case it is recommen
 ## How to use
 The tool can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.
 
-Before the tool can be executed, "myconfig.py" must be edited by the user to give data filepaths and to set sampling preferences. 
-The user is expected to provide A raster 
-
+Before the tool can be executed, "myconfig.py" must be edited by the user to give filepaths to the following data: 
+* A tiff file of slope data.
+* A tiff file of elevation data.
+* A shapefile containing a polygon outline of an area of interest.
+The user can also specify preferences to the sampling conditions.
 
 
 ## License
