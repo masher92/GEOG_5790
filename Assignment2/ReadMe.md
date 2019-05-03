@@ -70,3 +70,4 @@ A test datsa set is provided in the repository, containing all the files needed 
 
 ![Test Image 6](Capture.PNG)
 
+![Test Image 6](points_map_new.html)
