@@ -4,7 +4,6 @@ The purpose of this program is to provide a user with a set of locations in whic
 If the user has an existing dataset of locations where they have sampled peat depth previously, the program identifies locations where additional sampling would improve the utility of the dataset.
 
 The program is designed to ensure the sample:
-
 A.) Contains the number of samples desired by the user.  
 B.) Has the same proportional representation of slope and elevation categories as the wider area if interest.  
 C.) Ensures that each sample point is within a specified distance range of at least one other point.  
@@ -19,16 +18,16 @@ The prevailing method for manual sampling of peat depth involves taking samples 
 It is hoped that the creation of an easy-to-use tool would encourage practitioners to adopt a sampling approach which would facilitate more accurate modelling and mapping of peat depth.
 
 ## Installation
-Usage of this tool requires installation of [Anaconda.](https://www.anaconda.com/distribution/#download-section)
+Usage of this tool requires installation of [Anaconda.](https://www.anaconda.com/distribution/#download-section)  
 Geopandas and Shapely extension packages are required and can be installed through command line (search: "cmd") by typing:
-Pip install geopandas; pip install shapely.
-Installation of these packages on Windows may fail, in which case it is recommended to:
+Pip install geopandas; pip install shapely.  
+Installation of these packages on Windows may fail, in which case it is recommended to:  
 * Dowload Shapely from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely) according to your PC specifications and run the cmd in the folder it downloads to, typing: pip install Shapely-1.6.4.post1-cp37-cp37m-win_amd64.whl
 * Type "conda install -c conda-forge geopandas" into the cmd for geopandas.
 * CRS???
 
 ## How to use
-The tool can be executed using "RunProgram.py" either using the command line or opening the Python IDLE or Spyder and pressing F5.  
+The tool can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.   
 Before the tool can be executed, "myconfig.py" must be edited by the user to give filepaths to the following data:
 * A tiff file of slope data.
 * A tiff file of elevation data.
