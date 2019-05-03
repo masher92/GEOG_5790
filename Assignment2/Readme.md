@@ -1,4 +1,4 @@
-## Sampling location generator 
+# Sampling location generator 
 The purpose of this program is to provide a user with a set of locations in which to conduct manual sampling
 of peat depth in order to optomise performance of a geostatistical model of peat depth over an area of interest.
 
@@ -36,7 +36,16 @@ Installation of these packages on Windows may fail, in which case it is recommen
 * Type "conda install -c conda-forge geopandas" into the cmd for geopandas.
 * CRS???
 
-## QUick start tutorial
+## How to use
+The tool can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.
+
+The project supplies 4 folders:
+* functions.py : contains definitions of functions used by the main processing script.
+* imported_functions.py : contains definitions of functions used by the main processing script.
+The program can be executed 
+The program requires the user to 
+
+Myconfig.py 
 
 ## License
 
