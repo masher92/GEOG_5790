@@ -42,7 +42,7 @@ Using the installation procedure outlined above the program may still run into a
 <a name="use"></a>
 ## How to use
 <b><ins> 1. Edit "myconfig.py" file </ins></b>   
-Before the tool can be executed the config file must be edited in a text editor to provide filepaths to the following data:
+Before the tool can be executed the config file must be edited in a text editor to provide filepaths to the following data (NB: ensure file paths contain forwardslashes (/) rather than backslashes (\) used in windows file explorer.)
 * A shapefile containing a polygon outline of an area of interest. 
 * Raster slope dataset (TIFF) (NB: this can cover a wider area than the AOI, it will be trimmed).
 * Raster elevation dataset (TIFF) (NB: as above.)
