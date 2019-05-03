@@ -51,7 +51,7 @@ Before the tool can be executed the config file must be edited in a text editor 
 Filepaths must also be provided for saving the outputs of the tool, which include:
 * A dataframe containing the identified sampling locations. 
   * The user can choose for this dataframe to be sorted to represent the order in which the sample points should be visited so that the distance travelled between points is minimised.
-* An HTML webpage containing an interactive map displaying the locations of the sample points inside the area of interest. 
+* An HTML webpage containing an interactive map displaying the locations of the sample points inside the area of interest. Clicking each point generates a pop-up specifying its location.
 
 The sampling constraints may also be edited, including:
 * The number of samples to make.
@@ -72,13 +72,11 @@ A test dataset is provided in the repository, containing all the files needed to
 * Dales_elevation_clip.tiff - a Raster dataset of elevation values for a wider region of the Yorkshire Dales, 5m resolution.
 * Dales_slope_clip.tiff - a Raster dataset of slope values for a wider region of the Yorkshire Dales, 5m resolution.
 
-The following sampling constraints were used:
-* N_samples =
-* Max_dist = 
-* Min_fist = 
-* N_close_points = 
+Creating 900 sample points, with each point having at least 1 point within 0.001 - 50m of it,  took the program 1.91 minutes:
 
-The program took X minutes to create this sample:
+![Test Image 6](Capture.PNG)
+
+Creating 900 sample points, with each point having at least 1 point within 0.001 - 50m of it,  took the program 1.91 minutes:
 
 ![Test Image 6](Capture.PNG)
 
