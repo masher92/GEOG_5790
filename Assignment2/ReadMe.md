@@ -68,4 +68,4 @@ This project is licensed using the MIT license - see LICENSE.txt for further det
 A test datsa set is provided in the repository, containing all the files needed to run the program.
 
 
-![Test Image 6](E:/Msc/Advanced-Programming/GitHub/GEOG_5790/Assignment2/points_map_new.html)
+![Test Image 6](points_map_new.html)
