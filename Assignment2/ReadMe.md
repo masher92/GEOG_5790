@@ -66,3 +66,6 @@ This project is licensed using the MIT license - see LICENSE.txt for further det
 <a name="ex"></a>
 ## Example usage
 A test datsa set is provided in the repository, containing all the files needed to run the program.
+
+
+![Test Image 6](E:/Msc/Advanced-Programming/points_map_new.html)
