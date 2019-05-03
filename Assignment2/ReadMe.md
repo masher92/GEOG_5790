@@ -69,6 +69,7 @@ A test datsa set is provided in the repository, containing all the files needed 
 
 
 ![Test Image 6](points_map_new.html)
+![Test Image 6](Capture.PNG)
 
 ![image Info](file:///E:/Msc/Advanced-Programming/GitHub/GEOG_5790/Assignment2/Capture.PNG "Image Description")
 ![image Info](file:///E:/Msc/Advanced-Programming/GitHub/GEOG_5790/Assignment2/<Capture>.PNG "Imagedd Description")
