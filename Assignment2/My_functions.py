@@ -4,7 +4,7 @@ import time
 import numpy as np
 import pandas as pd
 from geopandas import GeoDataFrame, read_file
-import math
+#import math
 from shapely.geometry import Point, Polygon
 from sklearn.metrics.pairwise import euclidean_distances
 import os
@@ -14,6 +14,10 @@ import folium
 os.chdir("E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/")
 import functions as funcs
 from imported_functions import minimum_bounding_rectangle
+
+'''
+Functions for reading in data and processing
+'''
 
 def read_ascii(filename, filetype):
     """
@@ -28,28 +32,25 @@ def read_ascii(filename, filetype):
     start = time.time()
     with open(filename) as infile:
         ncols = int(infile.readline().split()[1])
-        print("ncols:" , ncols)
+       # print("ncols:" , ncols)
         nrows = int(infile.readline().split()[1])
-        print("nrows: ", nrows)
+     #   print("nrows: ", nrows)
         xllcorner = float(infile.readline().split()[1])
-        print ("xllcorner: ", xllcorner)
+       # print ("xllcorner: ", xllcorner)
         yllcorner = float(infile.readline().split()[1])
-        print ("yllcorner: ", yllcorner)
+      #  print ("yllcorner: ", yllcorner)
         cellsize = float(infile.readline().split()[1])
-        print("Cell size: ", cellsize)
+      #  print("Cell size: ", cellsize)
         nodata_value = int(infile.readline().split()[1])
-        print ("NoDataValues represented as: ", nodata_value)
-        #version = float(infile.readline().split()[1])
-        #print(version)
+      #  print ("NoDataValues represented as: ", nodata_value)
         
     # Create an array of latitude and longitude values using the lower left x and y coordinates, 
     # the ncols and nrows and half of the cellsize (to get the mid point of each cell)
-    latitude = yllcorner + cellsize * np.arange(nrows)
-    longitude = xllcorner + cellsize * np.arange(ncols)
+    latitude = yllcorner + (cellsize/2) * np.arange(nrows)
+    longitude = xllcorner + (cellsize/2) * np.arange(ncols)
     
     # Load the data values (excluding the first 6 rows containing the descriptive information)
     value = np.loadtxt(filename, skiprows=6)
-   # value = np.genfromtxt(filename, invalid_raise = False)
     # Flip the array as the values are upside down
     value =np.flipud(value)
     # Convert to dataframe (in same structure as array but with latitude and longitude values added)
@@ -130,20 +131,21 @@ def plot_df (df):
     gdf = GeoDataFrame(df,  geometry=geometry)
     return gdf.plot()
 
-def find_dists (sample):
-    """
-    Finds distance between each point in a dataframe and another.
-    : param sample: dataframe containing x and y coordinates.
-    : return mat: A matrix containing pairwise distances.
-    """
-    mat = []
-    for i,j in zip(sample['x'],sample['y']):
-        k = []
-        for l,m in zip(sample['x'],sample['y']):
-            k.append(math.hypot(i - l, j - m))
-            mat.append(k)
-    mat = np.array(mat)
-    return mat
+# USING EUCLIDEAN DISTANCE FUNCTION FROM SCIKITLEARN INSTEAD
+#def find_dists (sample):
+#    """
+#    Finds distance between each point in a dataframe and another.
+#    : param sample: dataframe containing x and y coordinates.
+#    : return mat: A matrix containing pairwise distances.
+#    """
+#    mat = []
+#    for i,j in zip(sample['x'],sample['y']):
+#        k = []
+#        for l,m in zip(sample['x'],sample['y']):
+#            k.append(math.hypot(i - l, j - m))
+#            mat.append(k)
+#    mat = np.array(mat)
+#    return mat
 
 def get_value_from_closest_point(input_df, row_number, df_of_interest, value_of_interest):
     """ 
@@ -160,14 +162,19 @@ def get_value_from_closest_point(input_df, row_number, df_of_interest, value_of_
     # 
     return  df_of_interest.iloc[[dists.argmin()]][value_of_interest].values[0]
 
-def convertCoords(row, inProj, outProj):
-    '''
-    : param row: A row in a dataframe, containing x and y columns with coordinates, which the function will be applied to using apply.
-    : param inProj: The initial projection of the row's coordinates.
-    : param outProj: The desiredm output projection of the row's coordinates.
-    '''
-    x2,y2 = pyproj.transform(inProj,outProj,row['x'],row['y'])
-    return pd.Series({'newLong':x2,'newLat':y2})
+# NOT CURRENTLY USED
+#def convertCoords(row, inProj, outProj):
+#    '''
+#    : param row: A row in a dataframe, containing x and y columns with coordinates, which the function will be applied to using apply.
+#    : param inProj: The initial projection of the row's coordinates.
+#    : param outProj: The desiredm output projection of the row's coordinates.
+#    '''
+#    x2,y2 = pyproj.transform(inProj,outProj,row['x'],row['y'])
+#    return pd.Series({'newLong':x2,'newLat':y2})
+
+'''
+Functions for sampling
+'''
 
 
 def find_near_neighbours (df, min_dist, max_dist, n_close_points, print_preference):
@@ -214,93 +221,62 @@ def resample_far_points (sample_df, original_df, n_close_points):
         row_to_add = df.sample(n=1)
         # Add it to dataframe
         new_sample_df = new_sample_df.append(row_to_add, sort = True).reset_index(drop = True)
-       # print (i)
     # Delete the close points column (so it can be recreated)
     new_sample_df = new_sample_df.drop(['close_points'], axis=1)
     return new_sample_df
 
-def resample_far_points2 (sample_df, original_df, n_close_points):
-    """
-    Removes rows from a dataframe which have less than a specified number of points close to them.
-    For each row which is removed, randomly selects a row from the  original dataframe which has the same
-    'Slope/Elevation' category as the removed row. 
-    Join the newly sampled rows back onto the sample dataframe.
-    : param sample_df: Dataframe containing rows which were sampled from original_df
-    : param original_df: Dataframe from which the sample was drawn.
-    : param n_close_points: Number of points required by user to be 'close' to each point in the sample. 
-    : return new_sample_df:  Dataframe containing new sample of same size as input sample_df 
-    """
-    # Keep only those points which have > n_close_points close to them.
-    new_sample_df = sample_df.loc[((sample_df['close_points'] >= n_close_points) & (sample_df['origin'] == 'new_point'))|(sample_df['origin'] == 'original_point')]
-    # Create a list of the 'Slope/Elevation values of the points which are removed from the dataframe
-    criteria = sample_df.loc[(sample_df['close_points'] < n_close_points) & (sample_df['origin'] == 'new_point'), 'Slope/Elevation']
-    if len(criteria) > 0 :
-        # Add one row matching each of these criteria to the new sample dataframe 
-        for i in range(0,len(criteria)):
-            # For each of these create a subset of df meeting criteria
-            df = original_df.loc[original_df['Slope/Elevation'] == criteria.iloc[i]]
-            # Randomly sample one row from those available
-            row_to_add = df.sample(n=1)
-            row_to_add['origin'] = 'new_point'
-            # Add it to dataframe
-            new_sample_df = new_sample_df.append(row_to_add, sort = True).reset_index(drop = True)
-           # print (i)
-        # Delete the close points column (so it can be recreated)
-        new_sample_df = new_sample_df.drop(['close_points'], axis=1)
-    else :
-        row_to_remove = sample_df.loc[(sample_df['close_points'] < n_close_points) & (sample_df['origin'] == 'original_point')].sample(n=1)
-        criteria = row_to_remove = row_to_remove['Slope/Elevation']
-        # Choose a new row to add
-        df = original_df.loc[original_df['Slope/Elevation'] == criteria.iloc[0]].sample(n=1)
-        new_sample_df = new_sample_df.append(df, sort = True).reset_index(drop = True)
-        print("no")
-        
-    return new_sample_df
 
-def resample_far_points22 (sample_df, original_df, n_close_points):
+def resample_prioritise_new_points (sample_df, original_df, n_close_points):
     """
-    Removes rows from a dataframe which have less than a specified number of points close to them.
+    Removes all points from a dataframe which were new samples and  which have less than a specified number of points close to them.
     For each row which is removed, randomly selects a row from the  original dataframe which has the same
     'Slope/Elevation' category as the removed row. 
+    If there are no such points:
+        Then removes one of the original sample points which have less than the specified near neighbour number.
     Join the newly sampled rows back onto the sample dataframe.
-    : param sample_df: Dataframe containing rows which were sampled from original_df
+    : param sample_df: Dataframe containing sample.
     : param original_df: Dataframe from which the sample was drawn.
     : param n_close_points: Number of points required by user to be 'close' to each point in the sample. 
     : return new_sample_df:  Dataframe containing new sample of same size as input sample_df 
     """
-    # Keep only those points which have > n_close_points close to them.
-    new_sample_df = sample_df.loc[((sample_df['close_points'] >= n_close_points) & (sample_df['origin'] == 'new_point'))|(sample_df['origin'] == 'original_point')]
-    # Create a list of the 'Slope/Elevation values of the points which are removed from the dataframe
-    criteria = sample_df.loc[(sample_df['close_points'] < n_close_points) & (sample_df['origin'] == 'new_point'), 'Slope/Elevation']
-    # If there are new points still with no neighbours
-    if len(criteria) > 0 :
-        # Add one row matching each of these criteria to the new sample dataframe 
+    # If there are any new points with not enough near neighbours then resample these
+    if len(sample_df.loc[(sample_df['close_points'] < n_close_points) & (sample_df['origin'] == 'new_point')]) > 0:
+        # Keep only those points which have > n_close_points close to them and are NEW
+        new_sample_df = sample_df.loc[((sample_df['close_points'] >= n_close_points) & (sample_df['origin'] == 'new_point'))|(sample_df['origin'] == 'original_point')]
+        # Create a list of the 'Slope/Elevation values of the points which are removed from the dataframe
+        # And select new points which meet the same criteria. 
+        criteria = sample_df.loc[(sample_df['close_points'] < n_close_points) & (sample_df['origin'] == 'new_point'), 'Slope/Elevation']
         for i in range(0,len(criteria)):
-            # For each of these create a subset of df meeting criteria
-            df = original_df.loc[original_df['Slope/Elevation'] == criteria.iloc[i]]
-            # Randomly sample one row from those available
-            row_to_add = df.sample(n=1)
-            row_to_add['origin'] = 'new_point'
-            # Add it to dataframe
-            new_sample_df = new_sample_df.append(row_to_add, sort = True).reset_index(drop = True)
-           # print (i)
+                # For each of these create a subset of df meeting criteria
+                df = original_df.loc[original_df['Slope/Elevation'] == criteria.iloc[i]]
+                # Randomly sample one row from those available
+                row_to_add = df.sample(n=1)
+                row_to_add['origin'] = 'new_point'
+                # Add it to dataframe
+                new_sample_df = new_sample_df.append(row_to_add, sort = True).reset_index(drop = True)
         # Delete the close points column (so it can be recreated)
         new_sample_df = new_sample_df.drop(['close_points'], axis=1)
+  
+    # If there are no new points which dont have enough new neighbours, then replace one of the origina;
+    # points with another with same slope/elevation criteria.
     else :
-        # Randomly select a row with no neighbours 
-        row_to_remove = new_sample_df.loc[(sample_df['close_points'] < n_close_points)].sample(n=1)
-        # Drop from dataframe
-        new_sample_df.drop(row_to_remove.index.values.astype(int)[0], inplace=True)
-        criteria = row_to_remove = row_to_remove['Slope/Elevation']
-        # Choose a new row to add
-        df = original_df.loc[original_df['Slope/Elevation'] == criteria.iloc[0]].sample(n=1)
+        # Randomly select a row with no neighbours, by proxy this will be an old point 
+        row_to_remove = sample_df.loc[(sample_df['close_points'] < n_close_points)].copy().sample(n=1)
+        # Drop from dataframe, using the index 
+        sample_df = sample_df.drop(row_to_remove.index.values.astype(int)[0]).copy()
+        # Find the slope/elevation criteria of the row removes and choose a similar row to replace it.
+        criteria = row_to_remove['Slope/Elevation']
+        row_to_add = original_df.loc[original_df['Slope/Elevation'] == criteria.iloc[0]].copy().sample(n=1)
+        row_to_add['origin'] = 'new_point'
         # Add it
-        new_sample_df = new_sample_df.append(df, sort = True).reset_index(drop = True)
-        
+        new_sample_df = sample_df.append(row_to_add, sort = True).reset_index(drop = True)
+        # Delete the close points column (so it can be recreated)
+        new_sample_df = new_sample_df.drop(['close_points'], axis=1)
     return new_sample_df
 
 
-def create_df_sample (df, sample_constraints):
+
+def create_df_sample (df, sample_constraints, print_preference):
     '''
     Creates a sample from a dataframe of coordinates, according to requirements that the sample should
     have the same distribution of slope and elevation values as the original dataframe and that each point 
@@ -313,7 +289,7 @@ def create_df_sample (df, sample_constraints):
     # Take a sample from the dataframe that matches the proportional split between slope and elevation in the whole AOI
     sample = df.groupby(['Elevation_cuts', 'Slope_cuts'], as_index=False).apply(lambda x: x.sample (frac = sample_constraints['n_samples']/len(df))).reset_index(drop=True)
     # For each point in the sample, find the number of neighbours it has within a range between min_dist and max_dist
-    sample = find_near_neighbours(sample, sample_constraints['min_dist'], sample_constraints['max_dist'], sample_constraints['n_close_points'], 'No print statements')
+    sample = find_near_neighbours(sample, sample_constraints['min_dist'], sample_constraints['max_dist'], sample_constraints['n_close_points'], print_preference)
     # If 0 rows have less than the requirements for n_close_points then sampling is done.
     # Else, the dataset is resampled until this condition is met.
     done = 'Not Done'
@@ -328,7 +304,7 @@ def create_df_sample (df, sample_constraints):
             # and replacing them with a point with the same slope/elevation profile from the original dataset .
             # Recount the near neighbours to each point.
             sample = resample_far_points (sample, df, sample_constraints['n_close_points'])
-            sample = find_near_neighbours (sample, sample_constraints['min_dist'], sample_constraints['max_dist'], sample_constraints['n_close_points'], 'No print statements')
+            sample = find_near_neighbours (sample, sample_constraints['min_dist'], sample_constraints['max_dist'], sample_constraints['n_close_points'], print_preference)
             # If 0 rows have less than the requirements for n_close_points then sampling is done.
             # Else, the dataset is returned for resampling.
             if sample.loc[sample.close_points <= sample_constraints['n_close_points'], 'close_points'].count()== 0:
@@ -353,7 +329,7 @@ def find_area_of_rectangle (coordinates):
     area = dists[0] * dists[1]
     return area
     
-def run_sampling (df, n, sample_constraints):
+def run_sampling (df, n, sample_constraints, print_preference):
     '''
     Samples a dataframe of coordinates, according to requirements that the sample should
     have the same distribution of slope and elevation values as the original dataframe and that each point 
@@ -377,7 +353,7 @@ def run_sampling (df, n, sample_constraints):
     counter = 0
     while counter <n:
         print ("Sample: " + str(counter))
-        sample = funcs.create_df_sample(df, sample_constraints)
+        sample = funcs.create_df_sample(df, sample_constraints, print_preference)
         sample_bb = minimum_bounding_rectangle (sample)
         bb_area = find_area_of_rectangle (sample_bb)
         if bb_area < best_bb_area:
@@ -387,7 +363,6 @@ def run_sampling (df, n, sample_constraints):
         else:
             print(f"Sample covers a bigger area than previous samples ({str(round(bb_area/1000000,2))} km^2).")
         print ("--------------------------------------------")
-        #print ('At sampling iteration ' + str(counter) + ' the sampling area is ' + str(round(bb_area/1000000,2)) + 'km^2')
         counter = counter +1
         
     print(f"Sampling complete after {n} iterations, with samples covering {str(round(best_bb_area/1000000,2))} km^2.")
@@ -401,7 +376,7 @@ def interactive_sample_plot (sample, aoi_fp, output_map_fp):
     alongside the outline of the area of interest.
     :param sample: Dataframe containing x and y coordinates.
     :param aoi_fp: Filepath to a shapefile containing the AOI.
-    : param output_map_fp: Filepath to the location where the map should be stored. 
+    :param output_map_fp: Filepath to the location where the map should be stored. 
     : return NULL
     '''
     # Convert the CRS of the sample dataframe (by first converting it to a geodataframe)  
@@ -425,13 +400,61 @@ def interactive_sample_plot (sample, aoi_fp, output_map_fp):
     folium.Choropleth(
             geo_data=aoi, fill_opacity = 0.1, fill_color='YlGn', ).add_to(m)
     
-
-
     # Add the sample points to the map as circles.
     # add a popup which specifies their location
     for i in range(0,len(reprojected_sample)):
         folium.CircleMarker([reprojected_sample['y'].iloc[i], reprojected_sample['x'].iloc[i]], radius = 4,color="#007849",fill_color="#007849",
                             popup=f"Latitude: {str(round(reprojected_sample['y'].iloc[i],5 ))}, Longitude: {str(round(reprojected_sample['x'].iloc[i],5 ))}.").add_to(m)
-        
+   
+
+
+    # Save map
+    m.save(output_map_fp)
+    
+def interactive_resample_plot (sample, aoi_fp, output_map_fp):
+    '''
+    Creates and saves to file a moveable map which displays the locations of the sample points, 
+    alongside the outline of the area of interest.
+    Colours the points so that original sample poitns and new sample points can be differentiated.
+    :param sample: Dataframe containing x and y coordinates.
+    :param aoi_fp: Filepath to a shapefile containing the AOI.
+    :param output_map_fp: Filepath to the location where the map should be stored. 
+    : return NULL
+    '''
+    # Convert the CRS of the sample dataframe (by first converting it to a geodataframe)  
+    geometry = [Point(xy) for xy in zip(sample['x'], sample['y'])]
+    gdf = GeoDataFrame(sample, crs={'init': 'epsg:27700'} , geometry=geometry)
+    gdf = gdf.to_crs({'init': 'epsg:4326'})
+    reprojected_sample = pd.DataFrame({'x': gdf.centroid.map(lambda p: p.x), 'y':gdf.centroid.map(lambda p: p.y), 'origin' : gdf['origin']})
+    
+    # Create a Map instance
+    # Set the map centred on a locaiton derived as the midpoint of the samples
+    m = folium.Map(location=[sum(reprojected_sample['y'])/len(reprojected_sample['y']), sum(reprojected_sample['x'])/len(reprojected_sample['x'])], 
+                             tiles = 'cartodbpositron',zoom_start=14, control_scale=True)
+    
+    # Read in the aoi and reproject it to WGS84 (Folium only plots in WGS84)
+    aoi= read_file(aoi_fp).to_crs(epsg=4326)
+    # Create a Geo-id (unique identifier for each row) which Folium requires.
+    aoi['geoid'] = aoi.index.astype(str)
+    # Select data needed
+    aoi = aoi[['geoid',  'geometry']]
+    # Plot data
+    folium.Choropleth(
+            geo_data=aoi, fill_opacity = 0.1, fill_color='YlGn', ).add_to(m)
+    
+    # Create seperate dataframes containing new and old sample points
+    new = reprojected_sample.loc[reprojected_sample['origin'] == 'new_point']
+    old = reprojected_sample.loc[reprojected_sample['origin'] == 'original_point']
+    
+    # Add the sample points to the map as circles.
+    # add a popup which specifies their location
+    for i in range(0,len(old)):
+        folium.CircleMarker([old['y'].iloc[i], old['x'].iloc[i]], radius = 4,color="#007849",fill_color="#007849",
+                            popup=f"Latitude: {str(round(reprojected_sample['y'].iloc[i],5 ))}, Longitude: {str(round(reprojected_sample['x'].iloc[i],5 ))}.").add_to(m)
+   
+
+    for i in range(0,len(new)):
+        folium.CircleMarker([new['y'].iloc[i], new['x'].iloc[i]], radius = 4,color="black",fill_color="black",
+                            popup=f"Latitude: {str(round(reprojected_sample['y'].iloc[i],5 ))}, Longitude: {str(round(reprojected_sample['x'].iloc[i],5 ))}.").add_to(m)
     # Save map
     m.save(output_map_fp)
