@@ -77,8 +77,7 @@ Snapshots of the interactive maps produced by running the program with various i
 <b> Example 1 </b>
 Creating 900 sample points, with each point having at least 1 point within 0.001 - 80m of it,  took the program 0.38 minutes:
 
-![Test Image 6](Capture.PNG)
-![Test Image 6](Outputs\80m1ncp.PNG)
+![Test Image 6](Outputs\80m1ncp.png)
 
 <b> Example 2 </b>
 
