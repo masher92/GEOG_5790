@@ -12,8 +12,8 @@ import folium
 
 # Import user defined functions
 os.chdir("E:/Msc/Advanced-Programming/Github/GEOG_5790/Assignment2/")
-import functions as funcs
-from imported_functions import minimum_bounding_rectangle
+import My_functions as funcs
+from Imported_functions import minimum_bounding_rectangle
 
 '''
 Functions for reading in data and processing
@@ -34,23 +34,24 @@ def read_ascii(filename, filetype):
         ncols = int(infile.readline().split()[1])
        # print("ncols:" , ncols)
         nrows = int(infile.readline().split()[1])
-     #   print("nrows: ", nrows)
+       # print("nrows: ", nrows)
         xllcorner = float(infile.readline().split()[1])
-       # print ("xllcorner: ", xllcorner)
+      #  print ("xllcorner: ", xllcorner)
         yllcorner = float(infile.readline().split()[1])
       #  print ("yllcorner: ", yllcorner)
         cellsize = float(infile.readline().split()[1])
       #  print("Cell size: ", cellsize)
         nodata_value = int(infile.readline().split()[1])
-      #  print ("NoDataValues represented as: ", nodata_value)
-        
+   #     print ("NoDataValues represented as: ", nodata_value)
+
     # Create an array of latitude and longitude values using the lower left x and y coordinates, 
     # the ncols and nrows and half of the cellsize (to get the mid point of each cell)
-    latitude = yllcorner + (cellsize/2) * np.arange(nrows)
-    longitude = xllcorner + (cellsize/2) * np.arange(ncols)
-    
+    latitude = yllcorner + cellsize * np.arange(nrows)
+    longitude = xllcorner + cellsize * np.arange(ncols)
+
     # Load the data values (excluding the first 6 rows containing the descriptive information)
     value = np.loadtxt(filename, skiprows=6)
+   # value = np.genfromtxt(filename, invalid_raise = False)
     # Flip the array as the values are upside down
     value =np.flipud(value)
     # Convert to dataframe (in same structure as array but with latitude and longitude values added)
@@ -63,11 +64,10 @@ def read_ascii(filename, filetype):
     df['ID'] = range(1, len(df) + 1)
     # reorder so x before y
     df = df[['x', 'y', filetype, 'ID']]
-    
-    end = time.time()
-    print("time elapsed:" ,round(((end-start)/60),2) , "minutes" )
-    return df
 
+    end = time.time()
+    print(filetype, "ASCii file converted to dataframe in " ,round(((end-start)/60),2) , "minutes" )
+    return df
 
 def df_to_gdf (aoi_fp, df, df_crs):
     """
@@ -79,7 +79,7 @@ def df_to_gdf (aoi_fp, df, df_crs):
     : return gdf: A geodataframe version of the data. 
     """
     start = time.time()
-   
+    print ("Creating geodataframe")
     # Import the area of interest
     aoi = read_file(aoi_fp)
     
@@ -96,14 +96,12 @@ def df_to_gdf (aoi_fp, df, df_crs):
     df["InAoi"] = df.apply(lambda row: poly.intersects(Point(row["x"], row["y"])), axis = 1)
     # Keep only those rows which are within the AOI
     df = df[df.InAoi == True]
-    print ("Dataframe cropped to AOI")
     # Store the geometry of those rows by combining their X and Y coordinates
     geometry = [Point(xy) for xy in zip(df.x, df.y)]
     # Convert those positions into a geodataframe, alongside their data values.
     gdf = GeoDataFrame(df[['slope', 'elevation']], crs = df_crs, geometry=geometry)
-    print ("Geodataframe created")
     end = time.time()
-    print("Time elapsed:" ,round(((end-start)/60),2) , "minutes" )
+    print("Geodataframe, cropped to AOI, created in " ,round(((end-start)/60),2) , "minutes" )
     return gdf
 
 def create_binned_variable (dataframe, original_variable, new_variable, bins, labels):
@@ -343,6 +341,8 @@ def run_sampling (df, n, sample_constraints, print_preference):
     : param sample_constraints: A dictionary containing constraints for the sampling procedure. 
     : return best_sample: A dataframe containing a sample of the input dataframe sampled according to sample_constraints.
     '''
+    #print("Beginning sampling")
+    print(f"Beginning sampling with {sample_constraints['n_samples']} samples, and with each sample requiring {sample_constraints['n_close_points']} points within {sample_constraints['min_dist']} m to  {sample_constraints['max_dist']}.")
     # Set up bounding box with an area that should be greater than any created. 
     best_bb_area = 1000000000000000000000
     # Repeat n times the sampling process from create_df_sample.
@@ -353,7 +353,7 @@ def run_sampling (df, n, sample_constraints, print_preference):
     counter = 0
     while counter <n:
         print ("Sample: " + str(counter))
-        sample = funcs.create_df_sample(df, sample_constraints, print_preference)
+        sample = create_df_sample(df, sample_constraints, print_preference)
         sample_bb = minimum_bounding_rectangle (sample)
         bb_area = find_area_of_rectangle (sample_bb)
         if bb_area < best_bb_area:
