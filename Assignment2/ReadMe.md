@@ -84,7 +84,7 @@ Creating 900 sample points, with each point having at least 1 point within 0.001
 
 Creating 900 sample points, with each point having at least 1 point within 0.001 - 50m of it,  took the program 1.91 minutes:
 
-![Test Image 6](Outputs/50m1ncp.PNG)
+![Test Image 6](Outputs/50m1ncp.PNG?raw=true)
 
 <b> Example 3 </b>
 
