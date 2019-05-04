@@ -77,7 +77,7 @@ Snapshots of the interactive maps produced by running the program with various i
 <b> Example 1 </b>
 Creating 900 sample points, with each point having at least 1 point within 0.001 - 80m of it,  took the program 0.38 minutes:
 
-![Test Image 6](Outputs\80m1ncp.png)
+![Test Image 6](Outputs/80m1ncp.png)
 
 <b> Example 2 </b>
 
@@ -89,7 +89,7 @@ Creating 900 sample points, with each point having at least 1 point within 0.001
 
 Creating 900 sample points, with each point having at least 3 points within 0.001 - 60m of it,  took the program 11.61 minutes:
 
-![Test Image 6](Outputs/60m3ncp.png)
+![Test Image 6](Outputs/60m3ncp.png = 250x250)
 
 <b> NB: </b> Example timeframes provided here and elsewhere in the project are derived from running the program on a computer with the following specifications: 16.0 GB RAM, x64 system.
 
