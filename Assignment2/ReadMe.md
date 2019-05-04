@@ -59,30 +59,41 @@ The sampling constraints may also be edited, including:
 * The number of points within this range that each point should have.
 
 <b><ins> 2. Run "TiffToASCii.py" </ins></b>  
-This tool must be executed first as it uses the Arcpy module to convert a tiff to a ascii file. Arcpy is only available in Python 2 and so must be run seperately to the rest. This will save an ascii file in the same location and with the same name as the  TIFF files they are based on, but with an edited filetype.  
+This tool converst the Tiff files to ASCii files. This must be executed first as it uses Arcpy (an interface to ArcGIS) which is only available in Python 2 and is thus incompatible with the rest of the code. This will save an ASCii file in the same location and with the same name as the  TIFF files they are based on, but with an edited filetype.  
 
-<b><ins> 3. Run "RunProgram.py" which reads in the TIFF file and identifies the sampling locations </ins></b>  
-The main tool can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.  
+<b><ins> 3. Run "RunProgram.py" </ins></b>  
+The main tool which reads in the TIFF file and identifies the sampling locations can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.  
 
 <a name="ex"></a>
 ## Example usage
 A test dataset is provided in the repository, containing all the files needed to run the program, including:
-* AOI - shapefile of Area of Interest west of Pately Bridge in the Yorkshire Dales.
-* ExistingPeatDepthSamples - Shapefile containing locations of an existing peat depth sample dataset.
+* AOI - shapefile of an example Area of Interest, west of Pately Bridge in the Yorkshire Dales.
 * Dales_elevation_clip.tiff - a Raster dataset of elevation values for a wider region of the Yorkshire Dales, 5m resolution.
 * Dales_slope_clip.tiff - a Raster dataset of slope values for a wider region of the Yorkshire Dales, 5m resolution.
+* ExistingPeatDepthSamples - Shapefile containing locations of an existing peat depth sample dataset.
+
+Snapshots of the interactive maps produced by running the program with various input parameters are given below.
+
+<b> Example 1 </b>
+Creating 900 sample points, with each point having at least 1 point within 0.001 - 80m of it,  took the program 0.38 minutes:
+
+![Test Image 6](Outputs/80m1ncp.PNG)
+
+<b> Example 2 </b>
 
 Creating 900 sample points, with each point having at least 1 point within 0.001 - 50m of it,  took the program 1.91 minutes:
 
-![Test Image 6](Capture.PNG)
+![Test Image 6](Outputs/50m1ncp.PNG)
 
-Creating 900 sample points, with each point having at least 1 point within 0.001 - 50m of it,  took the program 1.91 minutes:
 
-![Test Image 6](Capture.PNG)
+<b> Example 3 </b>
 
-<a name="lic"></a>
+Creating 900 sample points, with each point having at least 3 points within 0.001 - 60m of it,  took the program 11.61 minutes:
+
+![Test Image 6](Outputs/60m3ncp.PNG)
 
 <b> NB: </b> Example timeframes provided here and elsewhere in the project are derived from running the program on a computer with the following specifications: 16.0 GB RAM, x64 system.
 
+<a name="lic"></a>
 ## License
 This project is licensed using the MIT license - see LICENSE.txt for further details. 
