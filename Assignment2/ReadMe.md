@@ -42,7 +42,7 @@ Using the installation procedure outlined above the program may still run into a
 <a name="use"></a>
 ## How to use
 <b><ins> 1. Edit "myconfig.py" file </ins></b>   
-Before the tool can be executed the config file must be edited in a text editor to provide filepaths to the following data.
+Before the tool can be executed the config file must be edited in a text editor to provide filepaths to the following data:
 * A shapefile containing a polygon outline of an area of interest. 
 * Raster slope dataset (TIFF) (NB: this can cover a wider area than the AOI, it will be trimmed).
 * Raster elevation dataset (TIFF) (NB: as above.)
@@ -59,7 +59,7 @@ The sampling constraints may also be edited, including:
 * The number of points within this range that each point should have.
 
 <b><ins> 2. Run "TiffToASCii.py" </ins></b>  
-This tool converst the Tiff files to ASCii files. This must be executed first as it uses Arcpy (an interface to ArcGIS) which is only available in Python 2 and is thus incompatible with the rest of the code. This will save an ASCii file in the same location and with the same name as the  TIFF files they are based on, but with an edited filetype.  
+This tool converts the Tiff files to ASCii files. This must be executed first as it uses Arcpy (an interface to ArcGIS) which is only available in Python 2 and is thus incompatible with the rest of the code. This will save an ASCii file in the same location and with the same name as the  TIFF files they are based on, but with an edited filetype.  
 
 <b><ins> 3. Run "RunProgram.py" </ins></b>  
 The main tool which reads in the TIFF file and identifies the sampling locations can be executed using "RunProgram.py" either using the [command line](https://www.pythoncentral.io/execute-python-script-file-shell/) or opening the [Python IDLE](https://www.pitt.edu/~naraehan/python3/getting_started_win_first_try.html) or [Spyder](https://www.spyder-ide.org/) and pressing F5.  
