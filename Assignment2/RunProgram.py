@@ -124,11 +124,11 @@ if find_optimum_route == 'Yes':
 '''
 Create outputs
 '''
+print("Creating outputs")
 # Save a csv file containing x and y coordinates and slope.elevation categories
 sample[['x','y', 'Slope/Elevation']].to_csv(output_fp, index=False)
 
 # Save interactive output map as HTML, allowing exploration of the sample locations.
 # Clicking on a sample point brings up a pop-up showing its coordinates.
 funcs.interactive_sample_plot(sample, aoi_fp, output_map_fp)
-
 print ("Outputs saved to file")
