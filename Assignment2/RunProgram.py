@@ -87,7 +87,7 @@ variable_distribution = pd.DataFrame({'original_props' : round(combined_df['Slop
                      'sample_props' : round(sample['Slope/Elevation'].value_counts()/len(sample) * 100,3).reset_index(drop = True)}).fillna(0)
 variable_distribution ['Difference'] = abs(variable_distribution ['sample_props']- variable_distribution ['original_props'])
 print ('Sample created.')
-print(f"Sample slope and elevation distribution matches distribution: {all (x <0.1 for x in variable_distribution['Difference'])}")
+print(f"Sample slope and elevation distribution matches distribution of values in whole AOI: {all (x <0.1 for x in variable_distribution['Difference'])}")
 
 #'''
 #Create sample with old points.
